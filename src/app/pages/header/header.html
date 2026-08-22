@@ -1,0 +1,27 @@
+<div>
+    <nav class="navbar navbar-expand-lg custom-navbar sticky-top">
+        <div class="container-fluid px-3 px-md-4">
+            <a class="navbar-brand fw-bold" routerLink="/" (click)="closeMenu()">
+                <span class="brand-icon">🏢</span> RTMS
+            </a>
+
+            <button class="navbar-toggler" type="button" (click)="toggleMenu()" [attr.aria-expanded]="isMenuOpen()"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" [class.show]="isMenuOpen()">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+                    <!-- <li class="nav-item">
+          <span class="nav-link rms-text mb-0">RMS</span>
+        </li> -->
+                    <li class="nav-item mt-2 mt-lg-0">
+                        <a class="btn btn-outline-light signup-btn w-100" routerLink="/signup" (click)="closeMenu()">
+                            Sign Up
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>

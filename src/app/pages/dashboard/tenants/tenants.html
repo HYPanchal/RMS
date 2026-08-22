@@ -1,0 +1,70 @@
+<div class="page">
+    <div class="page-header mb-4">
+        <h3 class="fw-bold mb-1">Tenants</h3>
+        <p class="text-muted mb-0 small">All tenants renting your properties</p>
+    </div>
+
+    <div class="filter-bar row g-2 mb-4">
+        <div class="col-12 col-md-6">
+            <input type="text" class="form-control" placeholder="Search tenant by name..." [ngModel]="searchTerm()"
+                (ngModelChange)="onSearchChange($event)" />
+        </div>
+        <div class="col-12 col-md-6">
+            <select class="form-select" [ngModel]="selectedPropertyId()"
+                (ngModelChange)="onPropertyFilterChange($event)">
+                <option [ngValue]="null">All Properties</option>
+                @for (property of properties(); track property.id) {
+                <option [ngValue]="property.id">{{ property.propertyName }}</option>
+                }
+            </select>
+        </div>
+    </div>
+
+    @if (isLoading()) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary"></div>
+    </div>
+    } @else if (filteredTenants().length === 0) {
+    <div class="text-center text-muted py-5">No tenants found.</div>
+    } @else {
+    <div class="table-responsive tenant-table-wrapper d-none d-md-block">
+        <table class="table align-middle">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Property</th>
+                    <th>Rent</th>
+                    <th>Contact</th>
+                </tr>
+                <!-- <th>Room</th> -->
+            </thead>
+            <tbody>
+                @for (tenant of filteredTenants(); track tenant.id) {
+                <tr>
+                    <td class="fw-semibold">{{ tenant.fullName }}</td>
+                    <td>{{ getPropertyNameById(tenant.id) }}</td>
+                    <!-- <td>{{ tenant.roomNo || '-' }}</td> -->
+                    <td>₹{{ getPropertyNameById(tenant.id) }}</td>
+                    <td>{{ tenant.contactPhone || tenant.email || '-' }}</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="d-md-none">
+        @for (tenant of filteredTenants(); track tenant.id) {
+        <div class="card tenant-card mb-2 border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start">
+                    <h6 class="fw-semibold mb-1">{{ tenant.fullName }}</h6>
+                    <!-- <span class="badge bg-light text-dark">{{ tenant.roomNo || '-' }}</span> -->
+                </div>
+                <p class="text-muted small mb-1">{{ getPropertyNameById(tenant.id) }}</p>
+                <p class="small mb-0">₹{{ 30000 }} · {{ tenant.contactPhone }}</p>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

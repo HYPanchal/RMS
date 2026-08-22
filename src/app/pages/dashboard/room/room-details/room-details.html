@@ -1,0 +1,82 @@
+<div class="mb-4">
+  <button class="btn btn-sm btn-outline-primary" (click)="goBack()">← Back to Rooms</button>
+</div>
+
+@if (isLoading()) {
+  <div class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+} @else if (errorMessage()) {
+  <div class="alert alert-danger">{{ errorMessage() }}</div>
+} @else if (room()) {
+  <div class="card room-details-card border-0 shadow-sm">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-4">
+        <div>
+          <h3 class="fw-bold mb-1">Room {{ room()!.roomNumber }}</h3>
+          <p class="text-muted mb-0">Floor {{ room()!.floorNumber }} · {{ roomTypeLabel(room()!.roomType) }}</p>
+        </div>
+        <span class="badge status-badge">{{ room()!.roomStatus }}</span>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Base Rent</p>
+          <p class="detail-value">₹{{ room()!.baseRent }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Security Deposit</p>
+          <p class="detail-value">₹{{ room()!.securityDeposit }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Light / Unit</p>
+          <p class="detail-value">₹{{ room()!.lightPerUnit }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Water Charges</p>
+          <p class="detail-value">₹{{ room()!.waterCharges }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Occupancy</p>
+          <p class="detail-value">{{ room()!.currentOccupancy }} / {{ room()!.maxOccupancy }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Tenant</p>
+          <p class="detail-value">{{ room()!.tenantId ?? 'Vacant' }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Created</p>
+          <p class="detail-value">{{ room()!.createdDate }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Updated</p>
+          <p class="detail-value">{{ room()!.updatedDate }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tenants-section" style="padding-top: 1.5rem;">
+    <h5 class="fw-semibold mb-3">Tenants ({{ tenants()?.length ?? undefined }})</h5>
+
+    @if (tenants() === undefined) {
+      <div class="card border-0 shadow-sm">
+        <div class="card-body text-center text-muted py-4">
+          This room is currently vacant.
+        </div>
+      </div>
+    } @else {
+      <div class="row g-3">
+        @for (tenant of tenants(); track tenant.id) {
+          <div class="col-12 col-md-6">
+            <div class="card tenant-mini-card border-0 shadow-sm h-100">
+              <div class="card-body">
+                <h6 class="fw-semibold mb-1">{{ tenant.fullName }}</h6>
+                <p class="text-muted small mb-1">{{ tenant.contactPhone }} · {{ tenant.email }}</p>
+                <p class="small mb-0">Moved in: {{ tenant.moveInDate || '-' }}</p>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    }
+  </div>
+}

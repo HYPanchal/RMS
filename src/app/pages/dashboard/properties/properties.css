@@ -1,0 +1,83 @@
+.page {
+    width: 100%;
+    padding: 0%;
+}
+
+.property-card {
+    border-radius: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.property-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35rem 0;
+    font-size: 0.9rem;
+}
+
+.stat-label {
+    color: #6c757d;
+}
+
+.stat-value {
+    font-weight: 700;
+}
+
+.stat-value.total {
+    color: #3a0ca3;
+}
+
+.stat-value.occupied {
+    color: #e63946;
+}
+
+.stat-value.available {
+    color: #2a9d8f;
+}
+
+.occupancy-bar {
+    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+}
+
+/* 📲 Tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .property-card {
+        margin-left: 0.4rem;
+        margin-right: 0.4rem;
+    }
+
+    .property-card .card-body {
+        padding: 1.25rem;
+    }
+}
+
+
+/* 💻 Desktop */
+@media (min-width: 992px) {
+
+    .property-card {
+        margin-left: 0.4rem;
+        margin-right: 0.4rem;
+    }
+
+    .property-card .card-body {
+        padding: 1.5rem;
+    }
+}
+
+/* Android */
+@media (max-width: 575.98px) {
+    .property-card {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .property-card .card-body {
+        padding: 1.1rem;
+    }
+}

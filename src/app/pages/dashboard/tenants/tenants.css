@@ -1,0 +1,137 @@
+.page {
+    padding: 2%;
+}
+
+.filter-bar .form-control,
+.filter-bar .form-select {
+  border-radius: 0.6rem;
+  padding: 0.6rem 0.9rem;
+}
+
+.tenant-table-wrapper {
+  background: #fff;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.table thead {
+  background: #f8f9fc;
+}
+
+.table th {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #6c757d;
+  font-weight: 600;
+}
+
+.tenant-card {
+  border-radius: 0.85rem;
+}
+
+
+/* ============================= */
+/* 💻 Desktop / Window */
+/* 992px and above */
+/* ============================= */
+
+@media (min-width: 992px) {
+  .filter-bar {
+    padding: 0.5rem 0;
+  }
+
+  .tenant-table-wrapper {
+    margin: 0;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.9rem 1rem;
+  }
+
+  .tenant-card {
+    margin-bottom: 1rem;
+  }
+}
+
+
+/* ============================= */
+/* 📲 Tablet */
+/* 576px - 991px */
+/* ============================= */
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .filter-bar {
+    padding: 0.5rem;
+  }
+
+  .filter-bar .form-control,
+  .filter-bar .form-select {
+    padding: 0.55rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .tenant-table-wrapper {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 750px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.75rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .tenant-card {
+    margin: 0.5rem;
+  }
+}
+
+
+/* ============================= */
+/* 📱 Android / Mobile */
+/* Below 576px */
+/* ============================= */
+
+@media (max-width: 575.98px) {
+  .filter-bar {
+    padding: 0.5rem;
+  }
+
+  .filter-bar .form-control,
+  .filter-bar .form-select {
+    width: 100%;
+    padding: 0.55rem 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .tenant-table-wrapper {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    border-radius: 0.75rem;
+    overflow-x: auto;
+  }
+
+  .table {
+    min-width: 700px;
+  }
+
+  .table th,
+  .table td {
+    padding: 0.65rem 0.7rem;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  .tenant-card {
+    margin: 0.5rem;
+    border-radius: 0.75rem;
+  }
+}

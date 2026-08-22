@@ -1,0 +1,35 @@
+@if (isOpen()) {
+  <div class="sidebar-backdrop d-lg-none" (click)="closeSidebar()"></div>
+} @else {
+  <button
+    class="sidebar-toggle d-lg-none"
+    (click)="toggleSidebar()"
+    aria-label="Toggle menu"
+  >
+    ☰
+  </button>
+}
+
+
+<aside class="sidebar" [class.open]="isOpen()">
+  <div class="sidebar-header">🏢 RMS</div>
+
+  <nav class="sidebar-nav">
+    <a routerLink="/dashboard/properties" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
+      <span class="icon">🏠</span> Properties
+    </a>
+    <a routerLink="/dashboard/tenants" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
+      <span class="icon">👤</span> Tenants
+    </a>
+    <a routerLink="/dashboard/billing" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
+      <span class="icon">🧾</span> Billing
+    </a>
+    <a routerLink="/dashboard/revenue" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
+      <span class="icon">💰</span> Revenue
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <button class="btn btn-outline-danger btn-sm w-100" (click)="logout()">Logout</button>
+  </div>
+</aside>

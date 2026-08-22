@@ -1,0 +1,49 @@
+.login-wrapper {
+  min-height: calc(100vh - 100px);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 1rem;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.3rem;
+  z-index: 5;
+  text-decoration: none;
+}
+
+/* 📱 Mobile / Android phones */
+@media (max-width: 575.98px) {
+  .login-card {
+    max-width: 100%;
+    margin: 0 0.5rem;
+  }
+  .card-body {
+    padding: 1.5rem !important;
+  }
+  h3 {
+    font-size: 1.35rem;
+  }
+}
+
+/* 📲 Tablets (portrait & landscape) */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .login-card {
+    max-width: 450px;
+  }
+}
+
+/* 🖥️ Desktop / Windows large screens */
+@media (min-width: 992px) {
+  .login-card {
+    max-width: 420px;
+  }
+}

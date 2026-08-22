@@ -1,0 +1,131 @@
+.custom-navbar {
+    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    padding: 0.65rem 1rem;
+    margin: 0.85rem auto 0;
+    max-width: 96%;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 24px rgba(58, 12, 163, 0.18);
+    z-index: 1030;
+    transition:
+        max-width 0.4s ease,
+        padding 0.4s ease,
+        border-radius 0.4s ease,
+        margin 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+
+
+.navbar-brand {
+    color: #fff;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.rms-text {
+    color: #fff !important;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    font-size: 1.1rem;
+}
+
+.signup-btn {
+    border-radius: 10px;
+    padding: 0.4rem 1.4rem;
+    font-weight: 600;
+    color: #fff;
+    border-color: #fff;
+    transition: all 0.2s ease-in-out;
+    white-space: nowrap;
+}
+
+.signup-btn:hover {
+    background: #fff;
+    color: #3a0ca3;
+}
+
+.navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    filter: invert(1);
+}
+
+
+/* 📱 Mobile phones (Android/iOS) */
+@media (max-width: 575.98px) {
+
+    .custom-navbar {
+        max-width: 94%;
+        margin: 0.6rem auto 0;
+        border-radius: 1rem;
+        padding: 0.6rem 0.85rem;
+    }
+
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    .rms-text {
+        font-size: 0.95rem;
+    }
+
+    .signup-btn {
+        padding: 0.4rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .navbar-collapse {
+        overflow: hidden;
+    }
+
+    .navbar-collapse.show {
+        background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+        padding: 1rem;
+        border-radius: 0 0 0.75rem 0.75rem;
+        margin-top: 0.5rem;
+    }
+}
+
+/* 📲 Tablets */
+@media (min-width: 576px) and (max-width: 991.98px) {
+
+    .custom-navbar {
+        max-width: 95%;
+        border-radius: 1.15rem;
+    }
+
+    .navbar-collapse.show {
+        background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+        padding: 1rem;
+        border-radius: 0 0 0.75rem 0.75rem;
+        margin-top: 0.5rem;
+    }
+
+    .signup-btn {
+        padding: 0.45rem 1.2rem;
+    }
+}
+
+/* 🖥️ Desktop / Windows large screens */
+@media (min-width: 992px) {
+
+    .custom-navbar {
+        max-width: 92%;
+        border-radius: 1.5rem;
+        padding: 0.75rem 1.5rem;
+    }
+
+    .rms-text {
+        font-size: 1.15rem;
+    }
+
+    .navbar-nav {
+        gap: 1rem;
+    }
+}
