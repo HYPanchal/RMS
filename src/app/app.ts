@@ -18,5 +18,5 @@ import { AddRoom } from './pages/dashboard/room/add-room/add-room';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('RentalManagementSystem');
+  protected readonly title = signal('RentalManagementSystem'); 
 }
