@@ -7,6 +7,8 @@ import { Revenue } from './pages/dashboard/revenue/revenue';
 import { Room } from './pages/dashboard/room/room';
 import { RoomDetails } from './pages/dashboard/room/room-details/room-details';
 import { Properties } from './pages/dashboard/properties/properties';
+import { AddProperty } from './pages/dashboard/properties/add-property/add-property';
+import { AddRoom } from './pages/dashboard/room/add-room/add-room';
 
 export const routes: Routes = [
     // {path: 'login', component: Login},
@@ -15,6 +17,8 @@ export const routes: Routes = [
         component: Dashboard, 
         children:[
             {path: 'properties', component: Properties},
+            {path: 'properties/add-property', component: AddProperty},
+            {path: 'rooms/:propertyId/:propertyName/add-room', component: AddRoom},
             {path: 'rooms/:propertyId/:propertyName',component: Room},
             {path: 'room/:propertyId/:propertyName/:roomId', component: RoomDetails},
             {path: 'room',component: Room},

@@ -1,5 +1,3 @@
-import { Roles } from "../Roles.model";
-
 export interface User{
     id: number;
     username: string;
@@ -15,4 +13,10 @@ export interface User{
     isActive: boolean;
     createdDate: string;
     updatedDate: string;
+}
+
+export enum Roles {
+    OWNER = 'OWNER',
+    TENANT = 'TENANT',
+    ADMIN = 'ADMIN'
 }

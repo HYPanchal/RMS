@@ -1,5 +1,5 @@
 import { User } from "../models/User-module/user.model";
-import { Roles } from "../models/Roles.model";
+import { Roles } from "../models/User-module/user.model"; 
 
 const testUsers: User[] = [
   {

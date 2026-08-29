@@ -1,4 +1,4 @@
-import { PropertyResponse } from "../models/property-module/property-DTO.model";
+import { PropertyResponse, RegiesterPropertyRequest } from "../models/property-module/property-DTO.model";
 import { Property } from "../models/property-module/property.model"; 
 
 const testProperties: Property[] = [
@@ -115,4 +115,25 @@ export function getAllProperties(): PropertyResponse[] {
 
 export function getPropertyById(id: number): PropertyResponse | undefined {
   return testProperties.find(p => p.id === id);
+}
+
+export function createProperty(body: RegiesterPropertyRequest): void {
+
+  const property: Property = {
+    id: testProperties.length + 1,
+    owner: body.owner,
+    propertyName: body.propertyName,
+    address: body.address,
+    city: body.city,
+    state: body.state,
+    pincode: body.pincode,
+    propertyType: body.propertyType,
+    totalRooms: body.totalRooms,
+    occupiedRooms: 0,
+    availableRooms: body.totalRooms,
+    createdDate: new Date().toISOString(),
+    updatedDate: new Date().toISOString()
+  };
+
+  testProperties.push(property);
 }

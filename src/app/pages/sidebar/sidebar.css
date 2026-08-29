@@ -36,7 +36,19 @@
   transform: translateX(0);
 }
 
+/* .sidebar-header {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: #3a0ca3;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+} */
+
 .sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   font-weight: 700;
   font-size: 1.2rem;
   color: #3a0ca3;
@@ -83,6 +95,36 @@
   margin-top: auto;
   padding-top: 1rem;
   border-top: 1px solid #eee;
+}
+
+.sidebar-collapse-btn {
+  display: none;
+}
+
+/* 📱 Mobile + 📲 Tablet */
+@media (max-width: 991.98px) {
+
+  .sidebar-collapse-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+    color: #3a0ca3;
+
+    font-size: 1.8rem;
+    width: 32px;
+    height: 32px;
+
+    border-radius: 0.5rem;
+    cursor: pointer;
+  }
+
+  .sidebar-collapse-btn:hover {
+    background: #f1f3fd;
+    color: #4361ee;
+  }
 }
 
 /* 📱 Mobile */

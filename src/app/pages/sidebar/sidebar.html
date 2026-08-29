@@ -1,18 +1,29 @@
 @if (isOpen()) {
-  <div class="sidebar-backdrop d-lg-none" (click)="closeSidebar()"></div>
+<div class="sidebar-backdrop d-lg-none" (click)="closeSidebar()"></div>
 } @else {
-  <button
-    class="sidebar-toggle d-lg-none"
-    (click)="toggleSidebar()"
-    aria-label="Toggle menu"
-  >
-    ☰
-  </button>
+<button class="sidebar-toggle d-lg-none" (click)="toggleSidebar()" aria-label="Toggle menu">
+  ☰
+</button>
 }
 
 
 <aside class="sidebar" [class.open]="isOpen()">
-  <div class="sidebar-header">🏢 RMS</div>
+  <div class="sidebar-header">
+    <span>🏢 RMS</span>
+
+    <!-- <button class="sidebar-collapse-btn" (click)="toggleSidebar()" aria-label="Collapse sidebar">
+      ‹
+    </button> -->
+    <button class="sidebar-collapse-btn" (click)="toggleSidebar()" aria-label="Collapse sidebar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-caret-left-fill"
+        viewBox="0 0 16 16">
+        <path
+          d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z" />
+      </svg>
+      <i class="bi bi-caret-left-fill"></i>
+    </button>
+
+  </div>
 
   <nav class="sidebar-nav">
     <a routerLink="/dashboard/properties" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
@@ -24,9 +35,9 @@
     <a routerLink="/dashboard/billing" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
       <span class="icon">🧾</span> Billing
     </a>
-    <a routerLink="/dashboard/revenue" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
+    <!-- <a routerLink="/dashboard/revenue" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
       <span class="icon">💰</span> Revenue
-    </a>
+    </a> -->
   </nav>
 
   <div class="sidebar-footer">

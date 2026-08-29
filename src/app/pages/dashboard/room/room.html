@@ -1,44 +1,52 @@
-<div class="mb-4">
-  <button class="btn btn-sm btn-outline-primary" (click)="goBack()">← Back to Properties</button>
-</div>
+<div class="page">
+    <div class="page-header mb-4">
+        <h3 class="fw-bold mb-1">{{propertyName}}</h3>
+        <p class="text-muted mb-0 small">All rooms across your properties</p>
+    </div>
+    <div class="header">
 
-<div class="page-header mb-4">
-    <h3 class="fw-bold mb-1">{{propertyName}}</h3>
-    <p class="text-muted mb-0 small">All rooms across your properties</p>
-</div>
+        <div class="mb-4">
+            <button class="btn btn-sm btn-outline-primary" (click)="goBack()">← Back to Properties</button>
+        </div>
+        <div class="mb-4">
+            <button class="btn btn-sm btn-outline-success" (click)="openCreateRoom()">＋ Add Room</button>
+        </div>
+    </div>
 
-@if (isLoading()) {
-<div class="text-center py-5">
-    <div class="spinner-border text-primary"></div>
-</div>
-} @else if (errorMessage()) {
-<div class="alert alert-danger">{{ errorMessage() }}</div>
-} @else if (rooms() === undefined) {
-<div class="text-center text-muted py-5">No rooms found.</div>
-} @else {
-<div class="row g-3 g-md-4">
-    @for (room of rooms(); track room.id) {
-    <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-        <div class="card room-card h-100 border-0 shadow-sm" (click)="openRoom(room.id)" role="button" tabindex="0">
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-start mb-2">
-                    <h5 class="card-title fw-semibold mb-0">Room {{ room.roomNumber }}</h5>
-                    <span class="badge" [class]="statusClass(room.roomStatus)">{{ room.roomStatus }}</span>
-                </div>
+    @if (isLoading()) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary"></div>
+    </div>
+    } @else if (errorMessage()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+    } @else if (rooms() === undefined) {
+    <div class="text-center text-muted py-5">No rooms found.</div>
+    } @else {
+    <div class="row g-3 g-md-4">
+        @for (room of rooms(); track room.id) {
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
+            <div class="card room-card h-100 border-0 shadow-sm" (click)="openRoom(room.id)" role="button" tabindex="0">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                        <h5 class="card-title fw-semibold mb-0">Room {{ room.roomNumber }}</h5>
+                        <span class="badge" [class]="statusClass(room.roomStatus)">{{ room.roomStatus }}</span>
+                    </div>
 
-                <p class="text-muted small mb-3">Floor {{ room.floorNumber }} · {{ roomTypeLabel(room.roomType) }}</p>
+                    <p class="text-muted small mb-3">Floor {{ room.floorNumber }} · {{ roomTypeLabel(room.roomType) }}
+                    </p>
 
-                <div class="stat-row">
-                    <span class="stat-label">Base Rent</span>
-                    <span class="stat-value">₹{{ room.baseRent }}</span>
-                </div>
-                <div class="stat-row">
-                    <span class="stat-label">Occupancy</span>
-                    <span class="stat-value">{{ room.currentOccupancy }} / {{ room.maxOccupancy }}</span>
+                    <div class="stat-row">
+                        <span class="stat-label">Base Rent</span>
+                        <span class="stat-value">₹{{ room.baseRent }}</span>
+                    </div>
+                    <div class="stat-row">
+                        <span class="stat-label">Occupancy</span>
+                        <span class="stat-value">{{ room.currentOccupancy }} / {{ room.maxOccupancy }}</span>
+                    </div>
                 </div>
             </div>
         </div>
+        }
     </div>
     }
 </div>
-}

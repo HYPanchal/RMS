@@ -1,7 +1,7 @@
 import { Component, inject, signal, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RevenueService } from '../../../core/services/revenue.service';
-import { RevenueSummary } from '../../../core/models/revenue.model';
+import { RevenueSummary } from '../../../core/models/revenu-mofule/revenue.model';
 
 @Component({
   selector: 'revenue',

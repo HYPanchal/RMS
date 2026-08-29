@@ -1,0 +1,33 @@
+.add-property-wrapper {
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.form-card {
+  border-radius: 1rem;
+}
+
+/* 📱 Mobile */
+@media (max-width: 575.98px) {
+  .form-card .card-body {
+    padding: 1.25rem !important;
+    padding-bottom: 10px;
+  }
+  .page-header h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* 📲 Tablet */
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .add-property-wrapper {
+    max-width: 100%;
+  }
+}
+
+/* 🖥️ Desktop */
+@media (min-width: 992px) {
+  .add-property-wrapper {
+    max-width: 760px;
+  }
+}

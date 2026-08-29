@@ -1,19 +1,19 @@
-import { Roles } from "../Roles.model";
+import { Roles } from "../User-module/user.model";
+import { IdType } from "./tenant.model";
 
-export interface RegisterRequest {
+export interface RegisterTenantRequest {
     userName: string;
     role: Roles;
     fullName: string;
     contactPhone: string;
     email: string;
     emergencyContact: string;
-    emergencyPhone: string;
-    idProofType: string;
+    idProofType: IdType;
     idProofNumber: string;
     occupation: string;
 }
 
-export interface TenantRequest {
+export interface TenantUpdateRequest {
     user: number | null;
     property: number | null;
     userName: string;
@@ -21,13 +21,20 @@ export interface TenantRequest {
     fullName: string;
     contactPhone: string;
     email: string;
-    moveInDate: string;
-    moveOutDate: string;
+    moveInDate: string | null;
+    moveOutDate: string | null;
     emergencyContact: string;
-    emergencyPhone: string;
-    idProofType: string;
+    idProofType: IdType;
     idProofNumber: string;
     occupation: string;
+    isActive: boolean;
+}
+
+export interface TenantRequest {
+    userId?: number; 
+    propertyId?: number; 
+    roomId?: number;
+    tenantId?: number;
 }
 
 export interface TenantResponse {
@@ -39,11 +46,11 @@ export interface TenantResponse {
     fullName: string;
     contactPhone: string;
     email: string;
-    moveInDate: string;
-    moveOutDate: string;
+    moveInDate: string | null;
+    moveOutDate: string | null;
     emergencyContact: string;
-    emergencyPhone: string;
-    idProofType: string;
+    idProofType: IdType;
     idProofNumber: string;
     occupation: string;
+    isActive: boolean;
 }

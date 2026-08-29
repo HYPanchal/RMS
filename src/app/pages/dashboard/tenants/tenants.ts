@@ -4,7 +4,7 @@ import { TenantService } from '../../../core/services/tenant.service';
 import { PropertyService } from '../../../core/services/property.service';
 import { Tenant } from '../../../core/models/tenant-module/tenant.model';
 import { Property } from '../../../core/models/property-module/property.model';
-import { Roles } from '../../../core/models/Roles.model';
+import { Roles } from '../../../core/models/User-module/user.model';
 import { getPropertyById } from '../../../core/test-data';
 
 @Component({

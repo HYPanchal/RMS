@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
-import { RevenueSummary } from '../models/revenue.model';
+import { RevenueSummary } from '../models/revenu-mofule/revenue.model';
 
 @Injectable({ providedIn: 'root' })
 export class RevenueService {

@@ -59,7 +59,7 @@ export class RoomDetails implements OnInit {
     //   }
     // });
 
-    console.log(id);
+    // console.log(id);
 
     this.room.set(getRoomById(id));
     this.tenants.set(getTenantsByRoomId(id));

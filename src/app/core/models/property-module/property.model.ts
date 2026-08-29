@@ -13,3 +13,10 @@ export interface Property {
   createdDate: string;
   updatedDate: string;
 }
+
+export enum PropertyType {
+  APERTMENT = 'APARTMENT',
+  PG = 'PG',
+  VILLA = 'VILLA',
+  FLAT = 'FLAT'
+}

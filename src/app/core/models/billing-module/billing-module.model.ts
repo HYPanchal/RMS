@@ -7,14 +7,15 @@ export interface BillingModel{
     rentAmount: number;
     electricity: string;
     water: string;
-    maintenance: string;
-    otherCharges:  string;
-    otherChargesDescription: string;
+    maintenance: string | null;
+    otherCharges:  string | null;
+    otherChargesDescription: string | null;
     totalAmount: number;
     paymentStatus: string;
-    amountPaind: string;
-    paymentDate: string;
-    note: string;
+    amountPaid: string | null;
+    paymentDueDate: string;
+    paymentDate: string | null;
+    note: string | null;
     entryDate: string;
     updatedDate: string;
 }

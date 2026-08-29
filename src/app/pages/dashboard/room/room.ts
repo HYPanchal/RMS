@@ -26,7 +26,7 @@ export class Room {
     this.propertyId = Number(this.route.snapshot.paramMap.get('propertyId'));
     this.propertyName = String(this.route.snapshot.paramMap.get('propertyName'));
     if (!this.propertyId) {
-      this.errorMessage.set('Invalid room id.');
+      this.errorMessage.set('Invalid Property id.');
       this.isLoading.set(false);
       return;
     }
@@ -46,6 +46,11 @@ export class Room {
 
   openRoom(roomId: number): void {
     this.router.navigate(['/dashboard/room', this.propertyId, this.propertyName, roomId]);
+  }
+
+  openCreateRoom(): void {
+    console.log("Room - ", this.propertyId);
+    this.router.navigate(['/dashboard/rooms', this.propertyId, this.propertyName,'add-room']);
   }
 
   statusClass(status: RoomStatus): string {

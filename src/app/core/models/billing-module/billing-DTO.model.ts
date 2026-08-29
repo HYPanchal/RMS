@@ -1,8 +1,13 @@
 export interface BillingRequest{
-    id: number;
-    tenantId: number;
-    propertyId: number;
-    
+    propertyId?: number;
+    tenantId?: number;
+    roomId?: number;
+    month?: string;
+}
+
+export interface GenerateBillRequest {
+    roomId: number;
+    electricityUnit: number;
 }
 
 export interface BillingResponse {
@@ -15,13 +20,14 @@ export interface BillingResponse {
     electricity: string;
     water: string;
     maintenance: string | null;
-    otherCharges:  string;
-    otherChargesDescription: string;
+    otherCharges:  string | null;
+    otherChargesDescription: string | null;
     totalAmount: number;
     paymentStatus: string;
-    amountPaind: string;
-    paymentDate: string;
-    note: string;
+    amountPaid: string | null;
+    paymentDueDate: string;
+    paymentDate: string | null;
+    note: string | null;
     entryDate: string;
     updatedDate: string;
 }

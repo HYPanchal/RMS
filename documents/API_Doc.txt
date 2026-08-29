@@ -1,0 +1,29 @@
+API Documentation
+Dev Environment
+
+Base_URL :- 'http://localhost:8080/api'
+
+Login API :- 
+	Post - 'http://localhost:8080/api/auth/login'.
+		Request Body - LoginRequest
+
+		Response Body - LoginRequest
+
+
+Billing API :- 
+	Get - 'http://localhost:8080/api/bills'.
+		Request Body - BillingRequest
+
+		Response Body - BillingResponse[] 
+
+	Post - Base_URL + 'bills'.
+		Request Body - GenerateBillRequest
+		Response Body - BillingResponse
+
+Property API :-
+	Get - http://localhost:8080/api/properties/{propertyId}.
+		Request - id
+		Response Body - PropertyResponse[]
+
+
+

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
 import { LoginRequest, LoginResponse, AuthUser} from '../models/auth.model';
-import { RegisterRequest } from '../models/User-module/user-DTO.model';
+import { RegisterUserRequest } from '../models/User-module/user-DTO.model';
 
 const TOKEN_KEY = 'auth_token';
 const USER_KEY = 'auth_user';

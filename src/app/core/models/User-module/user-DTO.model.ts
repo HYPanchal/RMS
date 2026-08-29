@@ -1,9 +1,9 @@
-import { Roles } from "../Roles.model";
+import { Roles } from "./user.model"; 
 
-export interface RegisterRequest {
+export interface RegisterUserRequest {
   username: string;
   email: string;
-  password: string;       
+  passwordHash: string;      
   userRole: Roles;
   fullName: string;
   phoneNumber: string;
@@ -39,7 +39,7 @@ export interface UserResponse {
   id: number;
   username: string;
   email: string;     
-  // userRole: Roles;
+  userRole: Roles;
   fullName: string;
   phoneNumber: string;
   address: string;

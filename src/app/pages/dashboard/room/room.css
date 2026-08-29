@@ -1,3 +1,9 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .room-card {
   border-radius: 1rem;
   cursor: pointer;
@@ -18,9 +24,28 @@
   font-size: 0.9rem;
 }
 
-.stat-label { color: #6c757d; }
-.stat-value { font-weight: 700; color: #3a0ca3; }
+.stat-label {
+  color: #6c757d;
+}
+
+.stat-value {
+  font-weight: 700;
+  color: #3a0ca3;
+}
 
 @media (max-width: 575.98px) {
-  .room-card .card-body { padding: 1.1rem; }
+  .page {
+    padding-top: 2%;
+    margin-left: 0.7rem;
+    margin-right: 0.7rem;
+  }
+
+  /* .room-card {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  } */
+
+  .room-card .card-body {
+    padding: 1.1rem;
+  }
 }

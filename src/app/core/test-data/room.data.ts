@@ -1,7 +1,9 @@
-import { RoomResponse } from "../models/room-module/room-DTO.model";
+import { Observable, of } from 'rxjs';
+import { delay } from 'rxjs/operators';
+import { RegirsterRoomRequest, RoomResponse } from "../models/room-module/room-DTO.model";
 import { RoomModel, RoomType, RoomStatus } from "../models/room-module/room.model"; 
 
-export const testRooms: RoomModel[] = [
+const testRooms: RoomModel[] = [
 
   // =========================
   // PROPERTY 1
@@ -10,7 +12,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 1,
     propertyId: 1,
-    tenantId: [1],
+    tenantIds: [1],
     roomNumber: '101',
     floorNumber: '1',
     roomType: RoomType.SINGLE,
@@ -27,7 +29,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 2,
     propertyId: 1,
-    tenantId: [2, 3, 4],
+    tenantIds: [2, 3, 4],
     roomNumber: '102',
     floorNumber: '1',
     roomType: RoomType.DOUBLE,
@@ -44,7 +46,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 3,
     propertyId: 1,
-    tenantId: [5],
+    tenantIds: [5],
     roomNumber: '103',
     floorNumber: '1',
     roomType: RoomType.SINGLE,
@@ -66,7 +68,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 4,
     propertyId: 2,
-    tenantId: [5, 6],
+    tenantIds: [5, 6],
     roomNumber: '201',
     floorNumber: '2',
     roomType: RoomType.ONE_BHK,
@@ -83,7 +85,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 5,
     propertyId: 2,
-    tenantId: [7, 8],
+    tenantIds: [7, 8],
     roomNumber: '202',
     floorNumber: '2',
     roomType: RoomType.ONE_BHK,
@@ -100,7 +102,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 6,
     propertyId: 2,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '203',
     floorNumber: '2',
     roomType: RoomType.DOUBLE,
@@ -122,7 +124,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 7,
     propertyId: 3,
-    tenantId: [3, 5],
+    tenantIds: [3, 5],
     roomNumber: '301',
     floorNumber: '3',
     roomType: RoomType.TWO_BHK,
@@ -139,7 +141,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 8,
     propertyId: 3,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '302',
     floorNumber: '3',
     roomType: RoomType.ONE_BHK,
@@ -156,7 +158,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 9,
     propertyId: 3,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '303',
     floorNumber: '3',
     roomType: RoomType.SINGLE,
@@ -178,7 +180,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 10,
     propertyId: 4,
-    tenantId: [4, 5],
+    tenantIds: [4, 5],
     roomNumber: '401',
     floorNumber: '4',
     roomType: RoomType.DOUBLE,
@@ -195,7 +197,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 11,
     propertyId: 4,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '402',
     floorNumber: '4',
     roomType: RoomType.SINGLE,
@@ -212,7 +214,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 12,
     propertyId: 4,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '403',
     floorNumber: '4',
     roomType: RoomType.DOUBLE,
@@ -234,7 +236,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 13,
     propertyId: 5,
-    tenantId: [2, 4],
+    tenantIds: [2, 4],
     roomNumber: '501',
     floorNumber: '5',
     roomType: RoomType.ONE_BHK,
@@ -251,7 +253,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 14,
     propertyId: 5,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '502',
     floorNumber: '5',
     roomType: RoomType.ONE_RK,
@@ -273,7 +275,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 15,
     propertyId: 6,
-    tenantId: [6],
+    tenantIds: [6],
     roomNumber: '601',
     floorNumber: '6',
     roomType: RoomType.DOUBLE,
@@ -290,7 +292,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 16,
     propertyId: 6,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '602',
     floorNumber: '6',
     roomType: RoomType.SINGLE,
@@ -307,7 +309,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 17,
     propertyId: 6,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '603',
     floorNumber: '6',
     roomType: RoomType.SINGLE,
@@ -329,7 +331,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 18,
     propertyId: 7,
-    tenantId: [1, 3],
+    tenantIds: [1, 3],
     roomNumber: '701',
     floorNumber: '7',
     roomType: RoomType.ONE_BHK,
@@ -346,7 +348,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 19,
     propertyId: 7,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '702',
     floorNumber: '7',
     roomType: RoomType.TWO_BHK,
@@ -363,7 +365,7 @@ export const testRooms: RoomModel[] = [
   {
     id: 20,
     propertyId: 7,
-    tenantId: null,
+    tenantIds: null,
     roomNumber: '703',
     floorNumber: '7',
     roomType: RoomType.ONE_RK,
@@ -389,4 +391,28 @@ export function getRoomsByPropertyId(propertyId: number): RoomResponse[] | undef
 
 export function getRoomById(id: number): RoomResponse | undefined{
   return testRooms.find(r => r.id === id);
+}
+
+export function createRoom(body: RegirsterRoomRequest): void {
+  const room: RoomModel = {
+    id: testRooms.length + 1,
+    propertyId: body.propertyId,
+    tenantIds: null,
+    roomNumber: body.roomNumber,
+    floorNumber: body.floorNumber,
+    roomType: body.roomType,
+    roomStatus: body.roomStatus,
+    baseRent: body.baseRent,
+    lightPerUnit: body.lightPerUnit,
+    waterCharges: body.waterCharges,
+    securityDeposit: body.securityDeposit,
+    maxOccupancy: body.maxOccupancy,
+    currentOccupancy: 0,
+    createdDate: new Date().toISOString(),
+    updatedDate: new Date().toISOString()
+  };
+
+  testRooms.push(room);
+  console.log("Room created..!");
+  console.log(room);  
 }

@@ -51,4 +51,8 @@ export class Properties {
   openRooms(propertyId: number, propertyName: string): void {
     this.router.navigate(['/dashboard/rooms', propertyId, propertyName]);
   }
+
+  openCreateProperty(): void {
+    this.router.navigate(['/dashboard/properties/add-property'])
+  }
 }

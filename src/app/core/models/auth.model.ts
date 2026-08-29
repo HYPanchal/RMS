@@ -1,4 +1,4 @@
-import { Roles } from "./Roles.model";
+import { Roles } from "./User-module/user.model";
 
 export interface LoginRequest {
   username: string;

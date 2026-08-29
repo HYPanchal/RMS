@@ -1,0 +1,21 @@
+.add-room-wrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.form-card {
+  border-radius: 1rem;
+}
+
+@media (max-width: 575.98px) {
+  .form-card .card-body { padding: 1.25rem !important; }
+  .page-header h3 { font-size: 1.2rem; }
+}
+
+@media (min-width: 576px) and (max-width: 991.98px) {
+  .add-room-wrapper { max-width: 100%; }
+}
+
+@media (min-width: 992px) {
+  .add-room-wrapper { max-width: 760px; }
+}

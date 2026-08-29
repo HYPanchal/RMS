@@ -9,10 +9,11 @@ import { Billing } from './pages/dashboard/billing/billing';
 import { Revenue } from "./pages/dashboard/revenue/revenue";
 import { UserSignup } from "./pages/user-signup/user-signup";
 import { RoomDetails } from './pages/dashboard/room/room-details/room-details';
+import { AddRoom } from './pages/dashboard/room/add-room/add-room';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Login, Header, Dashboard, Properties, Tenants, Billing, Revenue, UserSignup, RoomDetails],
+  imports: [RouterOutlet, Login, Header, Dashboard, Properties, Tenants, Billing, Revenue, UserSignup, RoomDetails, AddRoom],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })

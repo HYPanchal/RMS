@@ -1,4 +1,13 @@
-
+export interface RegiesterPropertyRequest {
+    owner: number;
+    propertyName: string;
+    address: string;
+    city: string;
+    state: string;
+    pincode: string;
+    propertyType: string;
+    totalRooms: number;
+}
 
 export interface PropertyRequest {
     owner: number;

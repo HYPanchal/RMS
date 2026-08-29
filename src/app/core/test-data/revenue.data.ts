@@ -1,4 +1,4 @@
-import { RevenueSummary } from "../models/revenue.model"; 
+import { RevenueSummary } from "../models/revenu-mofule/revenue.model"; 
 
 const testRevenueSummaries: RevenueSummary[] = [
   {

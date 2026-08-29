@@ -3,8 +3,8 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { TitleCasePipe } from '@angular/common';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service'; 
-import { Roles } from '../../core/models/Roles.model'; 
-import { RegisterRequest } from '../../core/models/User-module/user-DTO.model';
+import { Roles } from '../../core/models/User-module/user.model'; 
+import { RegisterUserRequest } from '../../core/models/User-module/user-DTO.model';
 import { passwordMatchValidator } from '../../core/validators/password-match.validator'; 
 
 @Component({
