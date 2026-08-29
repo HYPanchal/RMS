@@ -9,7 +9,6 @@ Login API :-
 
 		Response Body - LoginRequest
 
-
 Billing API :- 
 	Get - 'http://localhost:8080/api/bills'.
 		Request Body - BillingRequest
@@ -21,9 +20,26 @@ Billing API :-
 		Response Body - BillingResponse
 
 Property API :-
-	Get - http://localhost:8080/api/properties/{propertyId}.
+	Get - 'http://localhost:8080/api/properties/{propertyId}'.
 		Request - id
 		Response Body - PropertyResponse[]
 
+	Post - 'http://localhost:8080/api/properties'
+		Request Body - RegiesterPropertyRequest
+		Response Body - PropertyResponse
+
+Room API :- 
+	Get - 'http://localhost:8080/api/rooms'
+		Request - RoomRequest
+		Response Body - RoomResponse[]
+
+	post - 'http://localhost:8080/api/rooms'
+		Request Body - RegirsterRoomRequest
+		Response Body - RoomResponse
+
+Tenant API :-
+	Get - 'http://localhost:8080/api/tenant'
+		Request Body - TenantRequest
+		Response Body - TenantResponse
 
 
