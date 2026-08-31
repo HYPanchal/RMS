@@ -5,7 +5,7 @@ export interface Tenant{
     user: number | null;
     property: number | null;
     userName: string;
-    passwordHash: string;
+    passwordHash: string  | null;
     role: Roles; 
     fullName: string;
     contactPhone: string;

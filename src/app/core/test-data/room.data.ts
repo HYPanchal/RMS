@@ -1,7 +1,7 @@
 import { Observable, of } from 'rxjs';
 import { delay } from 'rxjs/operators';
 import { RegirsterRoomRequest, RoomResponse } from "../models/room-module/room-DTO.model";
-import { RoomModel, RoomType, RoomStatus } from "../models/room-module/room.model"; 
+import { RoomModel, RoomType, RoomStatus } from "../models/room-module/room.model";
 
 const testRooms: RoomModel[] = [
 
@@ -385,12 +385,16 @@ export function getAllRooms(): RoomResponse[] {
   return testRooms;
 }
 
-export function getRoomsByPropertyId(propertyId: number): RoomResponse[] | undefined{
+export function getRoomsByPropertyId(propertyId: number): RoomResponse[] | undefined {
   return testRooms.filter(r => r.propertyId === propertyId);
 }
 
-export function getRoomById(id: number): RoomResponse | undefined{
+export function getRoomById(id: number): RoomResponse | undefined {
   return testRooms.find(r => r.id === id);
+}
+
+export function getRoomByTenantId(tenantId: number): RoomResponse | undefined {
+  return testRooms.find(r => r.tenantIds?.includes(tenantId));
 }
 
 export function createRoom(body: RegirsterRoomRequest): void {
@@ -414,5 +418,5 @@ export function createRoom(body: RegirsterRoomRequest): void {
 
   testRooms.push(room);
   console.log("Room created..!");
-  console.log(room);  
+  console.log(room);
 }

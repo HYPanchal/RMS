@@ -9,6 +9,9 @@ import { RoomDetails } from './pages/dashboard/room/room-details/room-details';
 import { Properties } from './pages/dashboard/properties/properties';
 import { AddProperty } from './pages/dashboard/properties/add-property/add-property';
 import { AddRoom } from './pages/dashboard/room/add-room/add-room';
+import { AddTenant } from './pages/dashboard/tenants/add-tenant/add-tenant';
+import { TenantService } from './core/services/tenant.service';
+import { TenantDetails } from './pages/dashboard/tenants/tenant-details/tenant-details';
 
 export const routes: Routes = [
     // {path: 'login', component: Login},
@@ -23,6 +26,8 @@ export const routes: Routes = [
             {path: 'room/:propertyId/:propertyName/:roomId', component: RoomDetails},
             {path: 'room',component: Room},
             {path: 'tenants', component: Tenants},
+            {path: 'tenants/add', component: AddTenant},
+            {path: 'tenants/:id', component: TenantDetails},
             {path: 'billing', component: Billing},
             {path: 'revenue', component: Revenue}
         ]

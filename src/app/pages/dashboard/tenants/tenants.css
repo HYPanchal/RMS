@@ -1,5 +1,16 @@
-.page {
+/* .page {
     padding: 2%;
+} */
+
+.page {
+  width: 100%;
+  padding: 0%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .filter-bar .form-control,
@@ -30,6 +41,38 @@
 .tenant-card {
   border-radius: 0.85rem;
 }
+
+.clickable-row {
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.clickable-row:hover,
+.clickable-row:focus-visible {
+  background: #f8f9fc;
+  outline: none;
+}
+
+.clickable-row:active {
+  background: #f1f3fd;
+}
+
+.clickable-card {
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.clickable-card:hover,
+.clickable-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08) !important;
+  outline: none;
+}
+
+.clickable-card:active {
+  transform: translateY(0);
+}
+
 
 
 /* ============================= */
@@ -101,6 +144,15 @@
 /* ============================= */
 
 @media (max-width: 575.98px) {
+  .page {
+    padding-top: 10%;
+  }
+
+  .header {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
   .filter-bar {
     padding: 0.5rem;
   }

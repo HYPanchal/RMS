@@ -1,7 +1,13 @@
 <div class="page">
-    <div class="page-header mb-4">
-        <h3 class="fw-bold mb-1">Tenants</h3>
-        <p class="text-muted mb-0 small">All tenants renting your properties</p>
+    <div class="header">
+        <div class="page-header mb-4">
+            <h3 class="fw-bold mb-1">Tenants</h3>
+            <p class="text-muted mb-0 small">All tenants renting your properties</p>
+        </div>
+
+        <div class="mb-4">
+            <button class="btn btn-sm btn-outline-success" (click)="openCreateTenant()">＋ Add Tenant</button>
+        </div>
     </div>
 
     <div class="filter-bar row g-2 mb-4">
@@ -40,11 +46,12 @@
             </thead>
             <tbody>
                 @for (tenant of filteredTenants(); track tenant.id) {
-                <tr>
+                <tr class="clickable-row" (click)="openTenantDetails(tenant)" role="button" tabindex="0"
+                    (keydown.enter)="openTenantDetails(tenant)">
                     <td class="fw-semibold">{{ tenant.fullName }}</td>
                     <td>{{ getPropertyNameById(tenant.id) }}</td>
                     <!-- <td>{{ tenant.roomNo || '-' }}</td> -->
-                    <td>₹{{ getPropertyNameById(tenant.id) }}</td>
+                    <td>₹{{ getRoomName(tenant.id) }}</td>
                     <td>{{ tenant.contactPhone || tenant.email || '-' }}</td>
                 </tr>
                 }
@@ -54,7 +61,8 @@
 
     <div class="d-md-none">
         @for (tenant of filteredTenants(); track tenant.id) {
-        <div class="card tenant-card mb-2 border-0 shadow-sm">
+        <div class="card tenant-card mb-2 border-0 shadow-sm clickable-card" (click)="openTenantDetails(tenant)"
+            role="button" tabindex="0" (keydown.enter)="openTenantDetails(tenant)">
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-start">
                     <h6 class="fw-semibold mb-1">{{ tenant.fullName }}</h6>

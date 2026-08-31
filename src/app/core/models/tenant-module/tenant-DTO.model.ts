@@ -8,9 +8,11 @@ export interface RegisterTenantRequest {
     contactPhone: string;
     email: string;
     emergencyContact: string;
+    emergencyPhone: string;
     idProofType: IdType;
     idProofNumber: string;
     occupation: string;
+    isActive: boolean;
 }
 
 export interface TenantUpdateRequest {
@@ -45,6 +47,7 @@ export interface TenantResponse {
     role: Roles; 
     fullName: string;
     contactPhone: string;
+    emergencyPhone: string;
     email: string;
     moveInDate: string | null;
     moveOutDate: string | null;
@@ -53,4 +56,6 @@ export interface TenantResponse {
     idProofNumber: string;
     occupation: string;
     isActive: boolean;
+    createdDate: string;
+    updatedDate: string;
 }

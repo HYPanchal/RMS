@@ -1,3 +1,8 @@
+/* .page {
+    width: 100%;
+    padding: 0%;
+} */
+
 .add-property-wrapper {
   max-width: 100%;
   margin: 0 auto;
@@ -11,8 +16,9 @@
 @media (max-width: 575.98px) {
   .form-card .card-body {
     padding: 1.25rem !important;
-    padding-bottom: 10px;
+    /* padding-bottom: 10px; */
   }
+
   .page-header h3 {
     font-size: 1.2rem;
   }
@@ -31,3 +37,11 @@
     max-width: 760px;
   }
 }
+
+/* Android */
+/* @media (max-width: 575.98px) {
+  .page-header {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+} */

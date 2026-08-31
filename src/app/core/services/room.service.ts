@@ -9,7 +9,7 @@ import { Room } from '../../pages/dashboard/room/room';
 export class RoomService {
   private api = inject(ApiService);
 
-  getAllRoomByPropertyId(body: RoomRequest): Observable<RoomResponse[]> {
+  getAllRoomByPropertyIdTenantIdRoomStatus(body: RoomRequest): Observable<RoomResponse[]> {
     return this.api.get<RoomResponse[]>('rooms', body);
   }
 

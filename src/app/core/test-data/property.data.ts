@@ -113,7 +113,7 @@ export function getAllProperties(): PropertyResponse[] {
   return testProperties;
 }
 
-export function getPropertyById(id: number): PropertyResponse | undefined {
+export function getPropertyById(id: number | undefined): PropertyResponse | undefined {
   return testProperties.find(p => p.id === id);
 }
 

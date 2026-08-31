@@ -1,3 +1,4 @@
+import { RegisterTenantRequest, TenantResponse } from "../models/tenant-module/tenant-DTO.model";
 import { IdType, Tenant } from "../models/tenant-module/tenant.model"; 
 import { Roles } from "../models/User-module/user.model";
 
@@ -235,14 +236,41 @@ const testTenants: Tenant[] = [
   },
 ];
 
-export function getAllTenant(): Tenant[] | undefined {
+export function getAllTenant(): TenantResponse[] | null {
   return testTenants;
 }
 
-export function getTenantById(id: number): Tenant | undefined {
+export function getTenantById(id: number): TenantResponse | undefined {
   return testTenants.find(t => t.id === id);
 }
 
-export function getTenantsByRoomId(id: number): Tenant[] | undefined {
+export function getTenantsByRoomId(id: number): TenantResponse[] | undefined {
   return testTenants.filter(t => t.property === id);
+}
+
+export function createTenant(body: RegisterTenantRequest): void {
+
+  const tenant: Tenant = {
+    id: testTenants.length + 1,
+    user: null,
+    property: null,
+    userName: body.userName,
+    passwordHash: null,
+    role: body.role,
+    fullName: body.fullName,
+    contactPhone: body.contactPhone,
+    email: body.email,
+    moveInDate: null,
+    moveOutDate: null,
+    emergencyContact: body.emergencyContact,
+    emergencyPhone: body.emergencyPhone,
+    idProofType: body.idProofType,
+    idProofNumber: body.idProofNumber,
+    occupation: body.occupation,
+    isActive: body.isActive,
+    createdDate: new Date().toISOString(),
+    updatedDate: new Date().toISOString()
+  };
+
+  testTenants.push(tenant);
 }

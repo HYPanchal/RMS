@@ -6,6 +6,7 @@ import { getRoomById, getTenantsByRoomId } from '../../../../core/test-data';
 import { RoomResponse } from '../../../../core/models/room-module/room-DTO.model';
 import { Tenant } from '../../../../core/models/tenant-module/tenant.model';
 import { TenantService } from '../../../../core/services/tenant.service';
+import { TenantResponse } from '../../../../core/models/tenant-module/tenant-DTO.model';
 
 @Component({
   selector: 'room-details',
@@ -20,7 +21,7 @@ export class RoomDetails implements OnInit {
   private tenantService = inject(TenantService);
 
   room = signal<RoomResponse | undefined>(undefined);
-  tenants = signal<Tenant[] | undefined>([]);
+  tenants = signal<TenantResponse[] | undefined>([]);
   isLoading = signal(true);
   errorMessage = signal<string | null>(null);
   roomId: number = 0;

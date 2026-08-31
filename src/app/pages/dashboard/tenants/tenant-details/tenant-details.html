@@ -1,0 +1,103 @@
+<div class="page">
+    <div class="mb-4">
+        <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">← Back to Tenants</button>
+    </div>
+
+    @if (isLoading()) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary"></div>
+    </div>
+    } @else if (errorMessage()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+    } @else if (tenant()) {
+    <div class="card tenant-details-card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-4">
+                <div>
+                    <h3 class="fw-bold mb-1">{{ tenant()!.fullName }}</h3>
+                    <p class="text-muted mb-0">{{ tenant()!.occupation || '-' }}</p>
+                </div>
+                <span class="badge status-badge">Tenant</span>
+            </div>
+
+            <div class="row g-3">
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Phone</p>
+                    <p class="detail-value">{{ tenant()!.contactPhone || '-' }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Email</p>
+                    <p class="detail-value">{{ tenant()!.email || '-' }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Move-in Date</p>
+                    <p class="detail-value">{{ tenant()!.moveInDate || '-' }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Move-out Date</p>
+                    <p class="detail-value">{{ tenant()!.moveOutDate || 'Active' }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Emergency Contact</p>
+                    <p class="detail-value">{{ tenant()!.emergencyContact || '-' }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Emergency Phone</p>
+                    <p class="detail-value">{{ tenant()!.emergencyPhone || '-' }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">ID Proof</p>
+                    <p class="detail-value">{{ tenant()!.idProofType }} · {{ tenant()!.idProofNumber }}</p>
+                </div>
+                <div class="col-6 col-md-3">
+                    <p class="detail-label">Joined</p>
+                    <p class="detail-value">{{ tenant()!.createdDate }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="room-section">
+        <h5 class="fw-semibold mb-3">Rented Room</h5>
+
+        @if (!room()) {
+        <div class="card border-0 shadow-sm">
+            <div class="card-body text-center text-muted py-4">
+                No room currently assigned to this tenant.
+            </div>
+        </div>
+        } @else {
+        <div class="card room-mini-card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-start mb-2">
+                    <h6 class="fw-semibold mb-0">Room {{ room()!.roomNumber }}</h6>
+                    <span class="badge bg-primary">{{ room()!.roomStatus }}</span>
+                </div>
+                <p class="text-muted small mb-2">
+                    {{ property()?.propertyName || 'Property' }} · Floor {{ room()!.floorNumber }} · {{
+                    roomTypeLabel(room()!.roomType) }}
+                </p>
+                <div class="row g-2">
+                    <div class="col-6 col-md-3">
+                        <p class="detail-label mb-0">Rent</p>
+                        <p class="detail-value mb-0">₹{{ room()!.baseRent }}</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <p class="detail-label mb-0">Deposit</p>
+                        <p class="detail-value mb-0">₹{{ room()!.securityDeposit }}</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <p class="detail-label mb-0">Water</p>
+                        <p class="detail-value mb-0">₹{{ room()!.waterCharges }}</p>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <p class="detail-label mb-0">Light/Unit</p>
+                        <p class="detail-value mb-0">₹{{ room()!.lightPerUnit }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+    }
+</div>

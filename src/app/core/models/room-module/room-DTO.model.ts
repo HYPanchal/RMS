@@ -36,6 +36,7 @@ export interface RoomUpdateRequest {
 
 export interface RoomResponse {
     id: number;
+    propertyId: number;
     tenantIds: number[] | null,
     roomNumber: string;
     floorNumber: string;

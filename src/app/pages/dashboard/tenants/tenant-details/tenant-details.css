@@ -1,0 +1,39 @@
+.page {
+  width: 100%;
+  padding: 0%;
+}
+
+.tenant-details-card { border-radius: 1rem; }
+
+.status-badge {
+  background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #6c757d;
+  margin-bottom: 0.2rem;
+}
+
+.detail-value {
+  font-weight: 700;
+  color: #212529;
+}
+
+.room-section h5 {
+  color: #3a0ca3;
+}
+
+.room-mini-card {
+  border-radius: 0.85rem;
+  border-left: 3px solid #4361ee !important;
+}
+
+@media (max-width: 575.98px) {
+  .tenant-details-card .card-body { padding: 1.25rem !important; }
+}

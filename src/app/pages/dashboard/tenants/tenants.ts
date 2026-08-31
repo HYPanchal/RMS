@@ -1,11 +1,13 @@
 import { Component, inject, signal, computed, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TenantService } from '../../../core/services/tenant.service';
 import { PropertyService } from '../../../core/services/property.service';
 import { Tenant } from '../../../core/models/tenant-module/tenant.model';
+import { TenantResponse } from '../../../core/models/tenant-module/tenant-DTO.model';
 import { Property } from '../../../core/models/property-module/property.model';
 import { Roles } from '../../../core/models/User-module/user.model';
-import { getPropertyById } from '../../../core/test-data';
+import { getAllProperties, getAllTenant, getPropertyById, getRoomByTenantId } from '../../../core/test-data';
 
 @Component({
   selector: 'tenants',
@@ -17,8 +19,9 @@ import { getPropertyById } from '../../../core/test-data';
 export class Tenants implements OnInit {
   private tenantService = inject(TenantService);
   private propertyService = inject(PropertyService);
+  private router = inject(Router);
 
-  tenants = signal<Tenant[]>([]);
+  tenants = signal<TenantResponse[] | null>([]);
   properties = signal<Property[]>([]);
   isLoading = signal(true);
 
@@ -35,7 +38,7 @@ export class Tenants implements OnInit {
     //   return matchesName && matchesProperty;
     // });
 
-    return this.tenants().filter((t) => {
+    return (this.tenants() ?? []).filter((t) => {
 
       const matchesName =
         !term ||
@@ -52,7 +55,7 @@ export class Tenants implements OnInit {
 
   ngOnInit(): void {
     // this.propertyService.getAll().subscribe({ next: (data) => this.properties.set(data) });
-    // this.properties.set(this.testProperties);
+    this.properties.set(getAllProperties());
     this.loadTenants();
   }
 
@@ -62,8 +65,16 @@ export class Tenants implements OnInit {
     //   next: (data) => { this.tenants.set(data); this.isLoading.set(false); },
     //   error: () => this.isLoading.set(false)
     // });
-    // this.tenants.set(this.testTenants);
+    this.tenants.set(getAllTenant());
     this.isLoading.set(false);
+  }
+
+  openCreateTenant(): void {
+    this.router.navigate(['/dashboard/tenants/add']);
+  }
+
+  openTenantDetails(tenant: TenantResponse): void {
+    this.router.navigate(['/dashboard/tenants', tenant.id]);
   }
 
   onSearchChange(value: string): void {
@@ -74,8 +85,12 @@ export class Tenants implements OnInit {
     this.selectedPropertyId.set(value);
   }
 
-  getPropertyNameById(id: number): string | null{
+  getPropertyNameById(id: number): string | null {
     return getPropertyById(id)?.propertyName ?? null;
+  }
+
+  getRoomName(id: number): number | null{
+    return getRoomByTenantId(id)?.baseRent ?? null; 
   }
 
   // getPropertyBaserentById(id: number): string | null{
