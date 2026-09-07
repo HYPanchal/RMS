@@ -170,18 +170,18 @@
 
 /* 📱 Mobile */
 @media (max-width: 767.98px) {
-  .sidebar {
+  /* .sidebar {
     width: 80%;
     max-width: 280px;
   }
 
   .sidebar-link {
     opacity: 0;
-    /* transform: translateY(10px) scale(0.95); */
+    transform: translateY(10px) scale(0.95);
   }
 
   .sidebar.open .sidebar-link {
-    /* opacity: 1; */
+    opacity: 1;
     animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
@@ -199,6 +199,17 @@
 
   .sidebar.open .sidebar-link:nth-of-type(4) {
     animation-delay: 0.45s;
+  } */
+
+  .sidebar {
+    width: 80%;
+    max-width: 280px;
+  }
+
+  .sidebar-link {
+    opacity: 1;
+    transform: none;
+    animation: none;
   }
 }
 
@@ -210,11 +221,11 @@
 
   .sidebar-link {
     opacity: 0;
-    /* transform: translateY(10px) scale(0.95); */
+    transform: translateY(10px) scale(0.95);
   }
 
   .sidebar.open .sidebar-link {
-    /* opacity: 1; */
+    opacity: 1;
     animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
   }
 
