@@ -31,8 +31,7 @@
 
 @media (max-width: 575.98px) {
   .page {
-    margin-left: 0.5rem;
-    margin-right: 0.5rem;
+    padding: 0.7rem;
   }
   .room-details-card .card-body { padding: 1.25rem !important; }
 }

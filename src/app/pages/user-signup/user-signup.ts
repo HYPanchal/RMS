@@ -63,7 +63,7 @@ export class UserSignup {
 
     const { confirmPassword, ...payload } = this.signupForm.getRawValue();
 
-    // this.authService.register(payload as RegisterRequest).subscribe({
+    // this.authService.register(payload as RegisterUserRequest).subscribe({
     //   next: () => {
     //     this.isLoading.set(false);
     //     this.router.navigate(['/login']);

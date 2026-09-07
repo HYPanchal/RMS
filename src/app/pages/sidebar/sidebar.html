@@ -1,7 +1,7 @@
 @if (isOpen()) {
 <div class="sidebar-backdrop d-lg-none" (click)="closeSidebar()"></div>
 } @else {
-<button class="sidebar-toggle d-lg-none" (click)="toggleSidebar()" aria-label="Toggle menu">
+<button class="sidebar-toggle d-lg-none hamburger-pop" (click)="toggleSidebar()" aria-label="Toggle menu">
   ☰
 </button>
 }
@@ -9,7 +9,9 @@
 
 <aside class="sidebar" [class.open]="isOpen()">
   <div class="sidebar-header">
-    <span>🏢 RMS</span>
+    <div class="animation">
+      <span>🏢 RTMS</span>
+    </div>
 
     <!-- <button class="sidebar-collapse-btn" (click)="toggleSidebar()" aria-label="Collapse sidebar">
       ‹
@@ -26,6 +28,9 @@
   </div>
 
   <nav class="sidebar-nav">
+    <a routerLink="/dashboard/overview" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
+      <span class="icon">🏠</span> Overview
+    </a>
     <a routerLink="/dashboard/properties" routerLinkActive="active" class="sidebar-link" (click)="closeSidebar()">
       <span class="icon">🏠</span> Properties
     </a>

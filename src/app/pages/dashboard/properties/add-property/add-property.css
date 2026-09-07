@@ -1,15 +1,40 @@
-/* .page {
+.page {
     width: 100%;
     padding: 0%;
-} */
+}
 
 .add-property-wrapper {
   max-width: 100%;
   margin: 0 auto;
 }
 
+.header-enter {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardEnter 0.5s ease-out forwards;
+}
+
 .form-card {
   border-radius: 1rem;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .header-enter {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }
 
 /* 📱 Mobile */
@@ -39,9 +64,8 @@
 }
 
 /* Android */
-/* @media (max-width: 575.98px) {
-  .page-header {
-    margin-left: 1rem;
-    margin-right: 1rem;
+@media (max-width: 575.98px) {
+  .page {
+    padding: 1rem;
   }
-} */
+}

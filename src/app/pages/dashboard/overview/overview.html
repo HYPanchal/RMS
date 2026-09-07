@@ -1,0 +1,183 @@
+<div class="overview-page page animation">
+    <div class="page-header mb-4">
+        <h3 class="fw-bold mb-1">Overview</h3>
+        <p class="text-muted mb-0 small">Snapshot of your rental business</p>
+    </div>
+
+    @if (isLoading()) {
+    <div class="text-center py-5">
+        <div class="spinner-border text-primary"></div>
+    </div>
+    } @else {
+
+    <!-- Row 1: stat cards -->
+    <div class="row g-3 g-md-4 mb-4">
+        <div class="col-12 col-sm-4">
+            <div class="stat-card">
+                <div class="stat-icon">🏠</div>
+                <div>
+                    <p class="stat-label">Properties</p>
+                    <p class="stat-number" [countUp]="stats().totalProperties" [countUpDelay]="100"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="stat-card">
+                <div class="stat-icon">🛏️</div>
+                <div>
+                    <p class="stat-label">Rooms</p>
+                    <p class="stat-number" [countUp]="stats().totalRooms" [countUpDelay]="100"></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-sm-4">
+            <div class="stat-card">
+                <div class="stat-icon">👤</div>
+                <div>
+                    <p class="stat-label">Tenants</p>
+                    <p class="stat-number" [countUp]="stats().totalTenants" [countUpDelay]="100"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 2: earnings chart -->
+    <!-- <div class="card chart-card border-0 shadow-sm mb-4">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                <div>
+                    <h5 class="fw-semibold mb-1">Monthly Earnings</h5>
+                    <p class="text-muted small mb-0">Expected vs actual rent collected</p>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="dot earned-dot"></span>Earned</span>
+                    <span class="legend-item"><span class="dot expected-dot"></span>Expected</span>
+                </div>
+            </div>
+
+            <div class="chart-scroll">
+                <svg viewBox="0 0 640 220" class="earnings-chart" preserveAspectRatio="none">
+                    <polyline [attr.points]="expectedPoints()" class="expected-line" fill="none" />
+                    <polyline [attr.points]="earnedPoints()" class="earned-line" fill="none" />
+                </svg>
+                <div class="chart-months">
+                    @for (e of earnings(); track e.month) {
+                    <span>{{ e.month }}</span>
+                    }
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+    <div class="card chart-card border-0 shadow-sm mb-4" style="border-radius: 1.25rem;">
+        <div class="card-body p-4">
+            <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
+                <div>
+                    <h5 class="fw-semibold mb-1">Monthly Earnings</h5>
+                    <p class="text-muted small mb-0">Expected vs actual rent collected</p>
+                </div>
+                <div class="chart-legend">
+                    <span class="legend-item"><span class="dot earned-dot"></span> - Earned | </span>
+                    <span class="legend-item"><span class="dot expected-dot"></span> - Expected</span>
+                </div>
+            </div>
+
+            <div class="chart-scroll">
+                <div class="bar-chart">
+                    @for (e of earnings(); track e.month; let i = $index) {
+                    <div class="bar-group">
+                        <div class="bars">
+                            <div class="bar expected-bar" [style.height.%]="barHeight(e.expected)"
+                                [style.animation-delay]="staggerDelay(i)"></div>
+                            <div class="bar earned-bar" [style.height.%]="barHeight(e.earned)"
+                                [style.animation-delay]="staggerDelay(i)"></div>
+                        </div>
+                        <span class="bar-month">{{ e.month }}</span>
+                    </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Row 3: donut charts -->
+    <div class="row g-3 g-md-4">
+        <div class="col-12 col-md-6">
+            <div class="card donut-card animation-card reveal-on-scroll border-0 shadow-sm h-100"
+                [class.in-view]="roomCardVisible()" scrollReveal [scrollRevealThreshold]="0.5"
+                scrollRevealRootMargin="0px 0px -15% 0px" (visible)="roomCardVisible.set(true)">
+                <div class="card-body p-4">
+                    <h5 class="fw-semibold mb-4">Room Occupancy</h5>
+
+                    <!-- Pie Chart -->
+                    <div class="donut-wrapper">
+                        <div class="donut-ring" [donutCountUp]="roomOccupiedPercent()" donutColorFilled="#4361ee"
+                            donutColorEmpty="#e4e9f7" [donutDelay]="300" [startTrigger]="roomCardVisible()">
+                            <div class="donut-center">
+                                <span class="donut-total-label">Total Rooms</span>
+                                <span class="donut-total-value" [countUp]="roomTotal()" [countUpDelay]="900"
+                                [startTrigger]="roomCardVisible()"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="donut-legend">
+                        <div class="legend-row">
+                            <span class="dot" style="background:#4361ee"></span>
+                            <span class="legend-text">Occupied</span>
+                            <span class="legend-value" [countUp]="roomOccupancy().occupied" 
+                            [countUpDelay]="100" [startTrigger]="roomCardVisible()"></span>
+                        </div>
+                        <div class="legend-row">
+                            <span class="dot" style="background:#e4e9f7"></span>
+                            <span class="legend-text">Available</span>
+                            <span class="legend-value" [countUp]="roomOccupancy().available"
+                                [countUpDelay]="150" [startTrigger]="roomCardVisible()"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="card donut-card animation-card reveal-on-scroll border-0 shadow-sm h-100"
+                [class.in-view]="rentCardVisible()" scrollReveal [scrollRevealThreshold]="0.5"
+                scrollRevealRootMargin="0px 0px -15% 0px" (visible)="rentCardVisible.set(true)">
+                <div class="card-body p-4">
+                    <h5 class="fw-semibold mb-4">Rent Collection</h5>
+
+                    <!-- Pie Chart -->
+                    <div class="donut-wrapper">
+                        <div class="donut-ring" [donutCountUp]="rentPaidPercent()" donutColorFilled="#2a9d8f"
+                            donutColorEmpty="#f4a261" [donutDelay]="300" [startTrigger]="rentCardVisible()">
+                            <div class="donut-center">
+                                <span class="donut-total-label">Total Tenants</span>
+                                <span class="donut-total-value" [countUp]="rentTotal()" 
+                                [countUpDelay]="300" [startTrigger]="rentCardVisible()"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="donut-legend">
+                        <div class="legend-row">
+                            <span class="dot" style="background:#2a9d8f"></span>
+                            <span class="legend-text">Paid</span>
+                            <span class="legend-value" [countUp]="rentStatus().paid" 
+                            [countUpDelay]="100" [startTrigger]="rentCardVisible()"></span>
+                        </div>
+                        <div class="legend-row">
+                            <span class="dot" style="background:#f4a261"></span>
+                            <span class="legend-text">Pending</span>
+                            <span class="legend-value" [countUp]="rentStatus().pending" 
+                            [countUpDelay]="150" [startTrigger]="rentCardVisible()"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+</div>

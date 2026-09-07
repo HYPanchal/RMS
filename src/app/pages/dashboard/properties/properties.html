@@ -1,11 +1,11 @@
 <div class="page">
     <div class="header">
-        <div class="page-header mb-4">
+        <div class="page-header animation mb-4">
             <h3 class="fw-bold mb-1">Properties</h3>
             <p class="text-muted mb-0 small">Overview of all your rental properties</p>
         </div>
 
-        <div class="mb-4">
+        <div class="mb-4 animation" style="animation-delay: 0.1s;">
             <button class="btn btn-sm btn-outline-success" (click)="openCreateProperty()">＋ Add Property</button>
         </div>
     </div>
@@ -20,30 +20,41 @@
     <div class="text-center text-muted py-5">No properties found.</div>
     } @else {
     <div class="row g-3 g-md-4">
-        @for (property of properties(); track property.id) {
+        @for (property of properties(); track property.id; let i = $index) {
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div class="card property-card h-100 border-0 shadow-sm"
-                (click)="openRooms(property.id, property.propertyName)" role="button">
+            <div class="card property-card animation animation-card h-100 border-0 shadow-sm"
+                [style.animation-delay.ms]="staggerDelay(i)" (click)="openRooms(property.id, property.propertyName)"
+                role="button">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-3">{{ property.propertyName }}</h5>
 
                     <div class="stat-row">
                         <span class="stat-label">Total Rooms</span>
-                        <span class="stat-value total">{{ property.totalRooms }}</span>
+                        <span class="stat-value total" [countUp]="property.totalRooms"
+                            [countUpDelay]="staggerDelay(i) + 400"></span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Occupied</span>
-                        <span class="stat-value occupied">{{ property.occupiedRooms }}</span>
+                        <span class="stat-value occupied" [countUp]="property.occupiedRooms"
+                            [countUpDelay]="staggerDelay(i) + 450"></span>
                     </div>
                     <div class="stat-row">
                         <span class="stat-label">Available</span>
-                        <span class="stat-value available">{{ property.availableRooms }}</span>
+                        <span class="stat-value available" [countUp]="property.availableRooms"
+                            [countUpDelay]="staggerDelay(i) + 500"></span>
                     </div>
 
-                    <div class="progress mt-3" style="height: 6px;">
+                    <!-- <div class="progress mt-3" style="height: 6px;">
                         <div class="progress-bar occupancy-bar" [style.width.%]="occupancyPercent(property)"></div>
                     </div>
-                    <p class="text-muted small mt-2 mb-0">{{ occupancyPercent(property) }}% occupied</p>
+                    <p class="text-muted small mt-2 mb-0">{{ occupancyPercent(property) }}% occupied</p> -->
+                    <div class="occupancy-wrap" [occupancyCountUp]="occupancyPercent(property)"
+                        [occupancyDelay]="staggerDelay(i) + 550">
+                        <div class="progress mt-3" style="height: 6px;">
+                            <div class="progress-bar occupancy-bar" style="width: 0%;"></div>
+                        </div>
+                        <p class="text-muted small mt-2 mb-0 occupancy-text">0% occupied</p>
+                    </div>
                 </div>
             </div>
         </div>

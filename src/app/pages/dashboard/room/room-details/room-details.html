@@ -1,6 +1,6 @@
 <div class="page">
   <div class="mb-4">
-    <button class="btn btn-sm btn-outline-primary" (click)="goBack()">← Back to Rooms</button>
+    <button class="btn btn-sm btn-outline-primary animation" (click)="goBack()">← Back to Rooms</button>
   </div>
 
   @if (isLoading()) {
@@ -10,7 +10,7 @@
   } @else if (errorMessage()) {
   <div class="alert alert-danger">{{ errorMessage() }}</div>
   } @else if (room()) {
-  <div class="card room-details-card border-0 shadow-sm">
+  <div class="card room-details-card border-0 shadow-sm animation" style="animation-delay: 0.2s;">
     <div class="card-body p-4">
       <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-4">
         <div>
@@ -18,6 +18,13 @@
           <p class="text-muted mb-0">Floor {{ room()!.floorNumber }} · {{ roomTypeLabel(room()!.roomType) }}</p>
         </div>
         <span class="badge status-badge">{{ room()!.roomStatus }}</span>
+        <div class="d-flex gap-2 mt-3">
+          @if (currentMonthBill()) {
+          <button class="btn btn-outline-primary btn-sm" (click)="goToBillDetails()">View This Month's Bill</button>
+          } @else {
+          <button class="btn btn-primary btn-sm" (click)="goToGenerateBill()">Generate This Month's Bill</button>
+          }
+        </div>
       </div>
 
       <div class="row g-3">
@@ -58,7 +65,8 @@
   </div>
 
   <div class="tenants-section" style="padding-top: 1.5rem;">
-    <h5 class="fw-semibold mb-3">Tenants ({{ tenants()?.length ?? undefined }})</h5>
+    <h5 class="fw-semibold mb-3 animation" style="animation-delay: 0.3;">Tenants ({{ tenants()?.length ?? undefined }})
+    </h5>
 
     @if (tenants() === undefined) {
     <div class="card border-0 shadow-sm">
@@ -70,7 +78,8 @@
     <div class="row g-3">
       @for (tenant of tenants(); track tenant.id) {
       <div class="col-12 col-md-6">
-        <div class="card tenant-mini-card border-0 shadow-sm h-100">
+        <div class="card tenant-mini-card border-0 shadow-sm h-100 animation animation-card"
+          [style.animation-delay.ms]="staggerDelay(tenant.id)">
           <div class="card-body">
             <h6 class="fw-semibold mb-1">{{ tenant.fullName }}</h6>
             <p class="text-muted small mb-1">{{ tenant.contactPhone }} · {{ tenant.email }}</p>

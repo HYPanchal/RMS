@@ -96,4 +96,10 @@ export class Tenants implements OnInit {
   // getPropertyBaserentById(id: number): string | null{
   //   return getPropertyById(id)?.baseRent ?? null;
   // }
+
+  staggerDelay(index: number): number {
+    const baseOffset = 200; // ms — lets header + button settle first
+    return baseOffset + Math.min(index, 10) * 50;
+    // return Math.min(index, 10) * 50;
+  }
 }

@@ -1,15 +1,15 @@
 <div class="page">
   <div class="add-property-wrapper">
-    <div class="page-header d-flex align-items-center gap-2 mb-4">
+    <div class="page-header d-flex align-items-center gap-2 mb-4 header-enter">
       <div>
         <h3 class="fw-bold mb-0">Add Property</h3>
         <p class="text-muted small mb-0">Enter details for the new property</p>
       </div>
     </div>
 
-    <button class="btn btn-sm btn-outline-primary" style="margin-bottom: 1.5rem; " (click)="onCancel()">← Back</button>
+    <button class="btn btn-sm btn-outline-primary header-enter" style="margin-bottom: 1.5rem; animation-delay: 0.1s;" (click)="onCancel()">← Back</button>
 
-    <div class="card form-card border-0 shadow-sm">
+    <div class="card form-card border-0 shadow-sm header-enter" style="animation-delay: 0.2s;">
       <div class="card-body p-4">
         @if (errorMessage()) {
         <div class="alert alert-danger py-2 small" role="alert">

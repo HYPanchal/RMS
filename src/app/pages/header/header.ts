@@ -1,5 +1,5 @@
-import { Component, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 
 @Component({
   selector: 'header',
@@ -9,6 +9,7 @@ import { RouterLink } from '@angular/router';
   styleUrl: './header.css',
 })
 export class Header {
+  private router = inject(Router);
   isMenuOpen = signal(false);
 
   toggleMenu(): void {
@@ -17,5 +18,10 @@ export class Header {
 
   closeMenu(): void {
     this.isMenuOpen.set(false);
+  }
+
+  navigateSignup(role: 'OWNER' | 'TENANT'): void {
+    this.closeMenu();
+    this.router.navigate(['/signup'], { queryParams: { role } });
   }
 }

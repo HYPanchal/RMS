@@ -6,7 +6,7 @@ const testUsers: User[] = [
     id: 1,
     username: 'admin',
     email: 'admin@rms.com',
-    passwordHash: 'hashed_password_1',
+    passwordHash: 'admin',
     userRole: Roles.ADMIN,
     fullName: 'System Administrator',
     phoneNumber: '9876543210',
@@ -122,4 +122,16 @@ export function getAllUser(): User[] | undefined {
 
 export function getUserById(id: number): User | undefined {
   return testUsers.find(u => u.id === id);
+}
+
+export function login(username: string, password: string): boolean {
+  const user: User | undefined = testUsers.find(r => r.username === username);
+
+  if(user !== null){
+    if(user?.passwordHash == password){
+      return true;
+    }
+    else{return false;}
+  }
+  else{return false;}
 }

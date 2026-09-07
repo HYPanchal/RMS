@@ -101,6 +101,47 @@
   display: none;
 }
 
+/* Animation */
+
+/* subtle press feedback — matters more here than hover, since this is touch-first */
+.sidebar-link:active {
+  opacity: 0.85;
+  /* transform: scale(0.96); */
+  /* transition: transform 0.1s ease-out; */
+}
+
+/* hamburger: pop in on mount, then react to tap */
+.hamburger-pop {
+  animation: popIn 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.sidebar-toggle:active {
+  transform: scale(0.88);
+  transition: transform 0.1s ease-out;
+}
+
+/* backdrop fade, so the dimmed overlay doesn't just snap in */
+.sidebar-backdrop {
+  animation: backdropFade 0.25s ease-out forwards;
+}
+
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translateY(0) scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* 📱 Mobile + 📲 Tablet */
 @media (max-width: 991.98px) {
 
@@ -133,6 +174,32 @@
     width: 80%;
     max-width: 280px;
   }
+
+  .sidebar-link {
+    opacity: 0;
+    /* transform: translateY(10px) scale(0.95); */
+  }
+
+  .sidebar.open .sidebar-link {
+    /* opacity: 1; */
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(1) {
+    animation-delay: 0.3s;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(2) {
+    animation-delay: 0.35s;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(3) {
+    animation-delay: 0.4s;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(4) {
+    animation-delay: 0.45s;
+  }
 }
 
 /* 📲 Tablet */
@@ -140,6 +207,32 @@
   .sidebar {
     width: 240px;
   }
+
+  .sidebar-link {
+    opacity: 0;
+    /* transform: translateY(10px) scale(0.95); */
+  }
+
+  .sidebar.open .sidebar-link {
+    /* opacity: 1; */
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(1) {
+    animation-delay: 0.3s;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(2) {
+    animation-delay: 0.35s;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(3) {
+    animation-delay: 0.4s;
+  }
+
+  .sidebar.open .sidebar-link:nth-of-type(4) {
+    animation-delay: 0.45s;
+  }  
 }
 
 /* 🖥️ Desktop — always visible, no toggle */
@@ -147,9 +240,31 @@
   .sidebar-toggle {
     display: none;
   }
+
   .sidebar {
     transform: translateX(0);
     box-shadow: none;
     border-right: 1px solid #eee;
+  }
+
+  .sidebar-link {
+    opacity: 0;
+    animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  }
+
+  .sidebar-link:nth-of-type(1) {
+    animation-delay: 0.3s;
+  }
+
+  .sidebar-link:nth-of-type(2) {
+    animation-delay: 0.35s;
+  }
+
+  .sidebar-link:nth-of-type(3) {
+    animation-delay: 0.4s;
+  }
+
+  .sidebar-link:nth-of-type(4) {
+    animation-delay: 0.45s;
   }
 }

@@ -1,29 +1,31 @@
-<div class="add-room-wrapper">
-  <div class="page-header d-flex align-items-center gap-2 mb-4">
-    <!-- <button class="btn btn-sm btn-outline-secondary" (click)="onCancel()">← Back</button> -->
-    <div>
-      <h3 class="fw-bold mb-0">Add Room</h3>
-      <p class="text-muted small mb-0">Enter details for the new room</p>
+<div class="page">
+  <div class="add-room-wrapper">
+    <div class="page-header d-flex align-items-center gap-2 mb-4 animation">
+      <!-- <button class="btn btn-sm btn-outline-secondary" (click)="onCancel()">← Back</button> -->
+      <div>
+        <h3 class="fw-bold mb-0">Add Room</h3>
+        <p class="text-muted small mb-0">Enter details for the new room</p>
+      </div>
     </div>
-  </div>
 
-  <button class="btn btn-sm btn-outline-primary" style="margin-bottom: 1.5rem;" (click)="onCancel()">← Back</button>
+    <button class="btn btn-sm btn-outline-primary animation" style="margin-bottom: 1.5rem; animation-delay: 0.2s;"
+      (click)="onCancel()">← Back</button>
 
-  <div class="card form-card border-0 shadow-sm">
-    <div class="card-body p-4">
-      @if (errorMessage()) {
+    <div class="card form-card border-0 shadow-sm animation" style="animation-delay: 0.3s;">
+      <div class="card-body p-4">
+        @if (errorMessage()) {
         <div class="alert alert-danger py-2 small" role="alert">{{ errorMessage() }}</div>
-      }
+        }
 
-      @if (!isLoadingProperties() && properties().length === 0) {
+        @if (!isLoadingProperties() && properties().length === 0) {
         <div class="alert alert-warning py-2 small">
           You need to add a property first before adding rooms.
         </div>
-      }
+        }
 
-      <form [formGroup]="roomForm" (ngSubmit)="onSubmit()" novalidate>
-        <div class="row g-3">
-          <!--<div class="col-12 col-md-6">
+        <form [formGroup]="roomForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="row g-3">
+            <!--<div class="col-12 col-md-6">
             <div class="form-floating">
               <select
                 id="propertyObj"
@@ -45,134 +47,124 @@
             </div>
           </div>-->
 
-          <div class="col-12 col-md-3">
-            <div class="form-floating">
-              <input
-                type="text"
-                id="roomNumber"
-                class="form-control"
-                formControlName="roomNumber"
-                [class.is-invalid]="roomForm.get('roomNumber')?.invalid && roomForm.get('roomNumber')?.touched"
-                placeholder="Room Number"
-              />
-              <label for="roomNumber">Room Number</label>
-              @if (roomForm.get('roomNumber')?.invalid && roomForm.get('roomNumber')?.touched) {
+            <div class="col-12 col-md-3">
+              <div class="form-floating">
+                <input type="text" id="roomNumber" class="form-control" formControlName="roomNumber"
+                  [class.is-invalid]="roomForm.get('roomNumber')?.invalid && roomForm.get('roomNumber')?.touched"
+                  placeholder="Room Number" />
+                <label for="roomNumber">Room Number</label>
+                @if (roomForm.get('roomNumber')?.invalid && roomForm.get('roomNumber')?.touched) {
                 <div class="invalid-feedback">Room number is required</div>
-              }
+                }
+              </div>
             </div>
-          </div>
 
-          <div class="col-12 col-md-3">
-            <div class="form-floating">
-              <input
-                type="text"
-                id="floorNumber"
-                class="form-control"
-                formControlName="floorNumber"
-                [class.is-invalid]="roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched"
-                placeholder="Floor Number"
-              />
-              <label for="floorNumber">Floor Number</label>
-              @if (roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched) {
+            <div class="col-12 col-md-3">
+              <div class="form-floating">
+                <input type="text" id="floorNumber" class="form-control" formControlName="floorNumber"
+                  [class.is-invalid]="roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched"
+                  placeholder="Floor Number" />
+                <label for="floorNumber">Floor Number</label>
+                @if (roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched) {
                 <div class="invalid-feedback">Floor number is required</div>
-              }
+                }
+              </div>
             </div>
-          </div>
 
-          <div class="col-12 col-md-6">
-            <div class="form-floating">
-              <select id="roomType" class="form-select" formControlName="roomType">
-                @for (t of roomTypes; track t) {
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <select id="roomType" class="form-select" formControlName="roomType">
+                  @for (t of roomTypes; track t) {
                   <option [value]="t">{{ typeLabel(t) }}</option>
-                }
-              </select>
-              <label for="roomType">Room Type</label>
+                  }
+                </select>
+                <label for="roomType">Room Type</label>
+              </div>
             </div>
-          </div>
 
-          <div class="col-12 col-md-6">
-            <div class="form-floating">
-              <select id="roomStatus" class="form-select" formControlName="roomStatus">
-                @for (s of roomStatuses; track s) {
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <select id="roomStatus" class="form-select" formControlName="roomStatus">
+                  @for (s of roomStatuses; track s) {
                   <option [value]="s">{{ typeLabel(s) }}</option>
-                }
-              </select>
-              <label for="roomStatus">Room Status</label>
+                  }
+                </select>
+                <label for="roomStatus">Room Status</label>
+              </div>
             </div>
-          </div>
 
-          <div class="col-6 col-md-3">
-            <div class="form-floating">
-              <input
-                type="number"
-                id="baseRent"
-                class="form-control"
-                min="1"
-                formControlName="baseRent"
-                [class.is-invalid]="roomForm.get('baseRent')?.invalid && roomForm.get('baseRent')?.touched"
-                placeholder="Base Rent"
-              />
-              <label for="baseRent">Base Rent (₹)</label>
-              @if (roomForm.get('baseRent')?.invalid && roomForm.get('baseRent')?.touched) {
+            <div class="col-6 col-md-3">
+              <div class="form-floating">
+                <input type="number" id="baseRent" class="form-control" min="1" formControlName="baseRent"
+                  [class.is-invalid]="roomForm.get('baseRent')?.invalid && roomForm.get('baseRent')?.touched"
+                  placeholder="Base Rent" />
+                <label for="baseRent">Base Rent (₹)</label>
+                @if (roomForm.get('baseRent')?.invalid && roomForm.get('baseRent')?.touched) {
                 <div class="invalid-feedback">Enter a valid rent</div>
-              }
+                }
+              </div>
             </div>
-          </div>
 
-          <div class="col-6 col-md-3">
-            <div class="form-floating">
-              <input type="number" id="lightPerUnit" class="form-control" min="0" formControlName="lightPerUnit" placeholder="Light/Unit" />
-              <label for="lightPerUnit">Light / Unit (₹)</label>
+            <div class="col-6 col-md-3">
+              <div class="form-floating">
+                <input type="number" id="lightPerUnit" class="form-control" min="0" formControlName="lightPerUnit"
+                  placeholder="Light/Unit" />
+                <label for="lightPerUnit">Light / Unit (₹)</label>
+              </div>
             </div>
-          </div>
 
-          <div class="col-6 col-md-3">
-            <div class="form-floating">
-              <input type="number" id="waterCharges" class="form-control" min="0" formControlName="waterCharges" placeholder="Water Charges" />
-              <label for="waterCharges">Water Charges (₹)</label>
+            <div class="col-6 col-md-3">
+              <div class="form-floating">
+                <input type="number" id="lastMeterReading" class="form-control" min="0"
+                  formControlName="lastMeterReading" placeholder="Unit" />
+                <label for="lastMeterReading">Unit (₹)</label>
+              </div>
             </div>
-          </div>
 
-          <div class="col-6 col-md-3">
-            <div class="form-floating">
-              <input type="number" id="securityDeposit" class="form-control" min="0" formControlName="securityDeposit" placeholder="Security Deposit" />
-              <label for="securityDeposit">Security Deposit (₹)</label>
+            <div class="col-6 col-md-3">
+              <div class="form-floating">
+                <input type="number" id="waterCharges" class="form-control" min="0" formControlName="waterCharges"
+                  placeholder="Water Charges" />
+                <label for="waterCharges">Water Charges (₹)</label>
+              </div>
             </div>
-          </div>
 
-          <div class="col-12 col-md-4">
-            <div class="form-floating">
-              <input
-                type="number"
-                id="maxOccupancy"
-                class="form-control"
-                min="1"
-                formControlName="maxOccupancy"
-                [class.is-invalid]="roomForm.get('maxOccupancy')?.invalid && roomForm.get('maxOccupancy')?.touched"
-                placeholder="Max Occupancy"
-              />
-              <label for="maxOccupancy">Max Occupancy</label>
-              @if (roomForm.get('maxOccupancy')?.invalid && roomForm.get('maxOccupancy')?.touched) {
+            <div class="col-6 col-md-3">
+              <div class="form-floating">
+                <input type="number" id="securityDeposit" class="form-control" min="0" formControlName="securityDeposit"
+                  placeholder="Security Deposit" />
+                <label for="securityDeposit">Security Deposit (₹)</label>
+              </div>
+            </div>
+
+            <div class="col-12 col-md-4">
+              <div class="form-floating">
+                <input type="number" id="maxOccupancy" class="form-control" min="1" formControlName="maxOccupancy"
+                  [class.is-invalid]="roomForm.get('maxOccupancy')?.invalid && roomForm.get('maxOccupancy')?.touched"
+                  placeholder="Max Occupancy" />
+                <label for="maxOccupancy">Max Occupancy</label>
+                @if (roomForm.get('maxOccupancy')?.invalid && roomForm.get('maxOccupancy')?.touched) {
                 <div class="invalid-feedback">Enter at least 1</div>
-              }
+                }
+              </div>
             </div>
           </div>
-        </div>
 
-        <div class="d-flex gap-2 mt-4">
-          <button type="button" class="btn btn-outline-secondary flex-fill flex-md-grow-0 px-4" (click)="onCancel()">
-            Cancel
-          </button>
-          <button type="submit" class="btn btn-primary flex-fill flex-md-grow-0 px-4" [disabled]="isLoading()">
-            <!-- [disabled]="isLoading() || properties().length === 0" -->
-            @if (isLoading()) {
+          <div class="d-flex gap-2 mt-4">
+            <button type="button" class="btn btn-outline-secondary flex-fill flex-md-grow-0 px-4" (click)="onCancel()">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary flex-fill flex-md-grow-0 px-4" [disabled]="isLoading()">
+              <!-- [disabled]="isLoading() || properties().length === 0" -->
+              @if (isLoading()) {
               <span class="spinner-border spinner-border-sm me-2"></span>Saving...
-            } @else {
+              } @else {
               Save Room
-            }
-          </button>
-        </div>
-      </form>
+              }
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
 </div>

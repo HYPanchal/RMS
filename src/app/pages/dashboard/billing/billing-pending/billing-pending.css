@@ -1,0 +1,15 @@
+.pending-card {
+  border-radius: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pending-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.08) !important;
+}
+
+@media (max-width: 575.98px) {
+  .pending-card .card-body {
+    padding: 1.1rem;
+  }
+}

@@ -1,0 +1,50 @@
+.page {
+  width: 100%;
+  padding: 1.5%;
+}
+
+.generate-bill-wrapper {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.form-card {
+  border-radius: 1rem;
+}
+
+.room-context {
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.preview-box {
+  background: #f8f9fc;
+  border-radius: 0.85rem;
+  padding: 1rem 1.1rem;
+}
+
+.preview-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.35rem 0;
+  font-size: 0.9rem;
+  color: #495057;
+}
+
+.preview-row.total {
+  border-top: 1px solid #dee2e6;
+  margin-top: 0.4rem;
+  padding-top: 0.6rem;
+  font-weight: 700;
+  color: #3a0ca3;
+}
+
+@media (max-width: 575.98px) {
+  .page {
+    padding: 0.8rem;
+  }
+
+  .form-card .card-body {
+    padding: 1.25rem !important;
+  }
+}

@@ -1,5 +1,5 @@
-<header></header>
-<div class="login-wrapper d-flex align-items-center justify-content-center">
+<header class="animation"></header>
+<div class="login-wrapper d-flex align-items-center justify-content-center animation" style="animation-delay: 0.3s;">
   <div class="card login-card shadow-lg border-0">
     <div class="card-body p-4 p-md-5">
       <div class="text-center mb-4">
@@ -21,23 +21,23 @@
           <label for="username">Username</label>
           @if (loginForm.get('username')?.touched) {
 
-            @if (loginForm.get('username')?.hasError('required')) {
-              <div class="invalid-feedback">
-              Username is required.
-            </div>
-            }
+          @if (loginForm.get('username')?.hasError('required')) {
+          <div class="invalid-feedback">
+            Username is required.
+          </div>
+          }
 
-            @else if (loginForm.get('username')?.hasError('minlength')) {
-            <div class="invalid-feedback">
-              Username must be at least 3 characters.
-            </div>
-            }
+          @else if (loginForm.get('username')?.hasError('minlength')) {
+          <div class="invalid-feedback">
+            Username must be at least 3 characters.
+          </div>
+          }
 
-            @else if (loginForm.get('username')?.hasError('pattern')) {
-            <div class="invalid-feedback">
+          @else if (loginForm.get('username')?.hasError('pattern')) {
+          <div class="invalid-feedback">
             Username must contain alphabets only.
-            </div>
-            }
+          </div>
+          }
           }
         </div>
 

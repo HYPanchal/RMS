@@ -1,4 +1,4 @@
-import { Component, inject, signal, OnInit} from '@angular/core';
+import { Component, inject, signal, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TenantService } from '../../../../core/services/tenant.service';
 import { RoomService } from '../../../../core/services/room.service';
@@ -7,6 +7,8 @@ import { TenantResponse } from '../../../../core/models/tenant-module/tenant-DTO
 import { RoomResponse } from '../../../../core/models/room-module/room-DTO.model';
 import { PropertyResponse } from '../../../../core/models/property-module/property-DTO.model';
 import { getPropertyById, getRoomByTenantId, getTenantById } from '../../../../core/test-data';
+import { getTestTenantBillHistory } from '../../../../core/test-data';
+import { TenantBillHistoryItem } from '../../../../core/models/billing-module/billing-DTO.model';
 
 @Component({
   selector: 'app-tenant-details',
@@ -24,6 +26,7 @@ export class TenantDetails {
   tenant = signal<TenantResponse | undefined>(undefined);
   room = signal<RoomResponse | undefined>(undefined);
   property = signal<PropertyResponse | undefined>(undefined);
+  billHistory = signal<TenantBillHistoryItem[]>([]);
 
   isLoading = signal(true);
   errorMessage = signal<string | null>(null);
@@ -36,6 +39,7 @@ export class TenantDetails {
       return;
     }
     this.loadTenant(id);
+    this.loadBillHistory(id);
   }
 
   loadTenant(id: number): void {
@@ -56,14 +60,17 @@ export class TenantDetails {
     this.tenant.set(getTenantById(id));
     this.room.set(getRoomByTenantId(id));
 
-    if(this.room()?.id !== null)
-    {
-        this.property.set(getPropertyById(this.room()?.propertyId))
-        this.isLoading.set(false);
-    }
-    else{
+    if (this.room()?.id !== null) {
+      this.property.set(getPropertyById(this.room()?.propertyId))
       this.isLoading.set(false);
     }
+    else {
+      this.isLoading.set(false);
+    }
+  }
+
+  loadBillHistory(tenantId: number): void {
+    getTestTenantBillHistory(tenantId).subscribe((history) => this.billHistory.set(history));
   }
 
   // private loadRoomForTenant(tenantId: number): void {
@@ -92,16 +99,24 @@ export class TenantDetails {
   //   });
   // }
 
-  private loadRoomForTenant(tenantId: number): void {
-
+  statusClass(status: string): string {
+    switch (status) {
+      case 'PAID': return 'bg-success';
+      case 'PARTIAL': return 'bg-warning text-dark';
+      default: return 'bg-danger';
+    }
   }
 
   goBack(): void {
     this.router.navigate(['/dashboard/tenants']);
   }
 
+  openBill(item: TenantBillHistoryItem): void {
+    this.router.navigate(['/dashboard/billing/details', item.bill.id]);
+  }
+
   roomTypeLabel(type: string): string {
     return type.replace(/_/g, ' ');
   }
-  
+
 }

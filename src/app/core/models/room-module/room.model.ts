@@ -12,6 +12,7 @@ export interface RoomModel {
   securityDeposit: number;
   maxOccupancy: number;
   currentOccupancy: number | null;
+  lastMeterReading: number;
 //   amenities: string;           // comma-separated, or switch to string[] if your API returns an array
 //   description: string;
   createdDate: string;

@@ -1,0 +1,14 @@
+@if (snackbarService.state(); as snack) {
+  <div class="snackbar-wrapper" [class]="snack.type" role="alert">
+    <span class="snackbar-icon">
+      @switch (snack.type) {
+        @case ('success') { ✓ }
+        @case ('error') { ✕ }
+        @case ('warning') { ⚠ }
+        @default { ℹ }
+      }
+    </span>
+    <span class="snackbar-message">{{ snack.message }}</span>
+    <button class="snackbar-close" (click)="close()" aria-label="Dismiss">×</button>
+  </div>
+}

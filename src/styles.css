@@ -1,6 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
 @import 'bootstrap/dist/css/bootstrap.min.css';
 
+:root {
+  --bs-body-font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
 html, body {
   height: 100%;
   margin: 0;
@@ -11,4 +15,51 @@ body {
   background: linear-gradient(135deg, #f5f7fa 0%, #e4ecf7 100%);
   background-attachment: fixed;
   min-height: 100vh;
+}
+
+/* Scroll-triggered reveal — separate from .animation, which fires immediately on load */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.reveal-on-scroll.in-view {
+    animation: cardEnter 0.7s ease-out forwards;
+}
+
+/* in your GLOBAL styles.css, for animation */
+.animation {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: cardEnter 0.7s ease-out forwards;
+}
+
+.animation-card {
+    border-radius: 1rem;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+@keyframes cardEnter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .animation {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .animation-card {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }

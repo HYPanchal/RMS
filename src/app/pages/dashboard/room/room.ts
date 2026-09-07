@@ -70,4 +70,9 @@ export class Room {
   roomTypeLabel(type: string): string {
     return type.replace(/_/g, ' ');
   }
+
+  staggerDelay(index: number): number {
+    const baseOffset = 200; // ms — lets header + button settle first
+    return baseOffset + Math.min(index, 10) * 50;
+  }
 }

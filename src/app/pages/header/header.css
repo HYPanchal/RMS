@@ -1,4 +1,4 @@
-.custom-navbar {
+/* .custom-navbar {
     background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
     padding: 0.65rem 1rem;
     margin: 0.85rem auto 0;
@@ -54,11 +54,11 @@
 
 .navbar-toggler-icon {
     filter: invert(1);
-}
+} */
 
 
 /* 📱 Mobile phones (Android/iOS) */
-@media (max-width: 575.98px) {
+/* @media (max-width: 575.98px) {
 
     .custom-navbar {
         max-width: 94%;
@@ -88,12 +88,12 @@
         background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
         padding: 1rem;
         border-radius: 0 0 0.75rem 0.75rem;
-        margin-top: 0.5rem;
+        margin-top: 0.5rem; 
     }
-}
+}*/
 
 /* 📲 Tablets */
-@media (min-width: 576px) and (max-width: 991.98px) {
+/* @media (min-width: 576px) and (max-width: 991.98px) {
 
     .custom-navbar {
         max-width: 95%;
@@ -110,10 +110,10 @@
     .signup-btn {
         padding: 0.45rem 1.2rem;
     }
-}
+} */
 
 /* 🖥️ Desktop / Windows large screens */
-@media (min-width: 992px) {
+/* @media (min-width: 992px) {
 
     .custom-navbar {
         max-width: 92%;
@@ -127,5 +127,241 @@
 
     .navbar-nav {
         gap: 1rem;
+    }
+} */
+
+.custom-navbar {
+    background: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    padding: 0.65rem 1rem;
+    margin: 0.85rem auto 0;
+    max-width: 96%;
+    border-radius: 1.25rem;
+    box-shadow: 0 8px 24px rgba(58, 12, 163, 0.18);
+    z-index: 1030;
+}
+
+.container-fluid {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Brand + toggler share one row → only 2 flex items → toggler lands correctly on the right */
+.nav-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* ===== Custom hamburger toggler ===== */
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: #fff;
+    padding: 0;
+}
+
+.brand-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 0.7rem;
+    background: rgba(255, 255, 255, 0.16);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.05rem;
+    letter-spacing: 1px;
+}
+
+.brand-tagline {
+    font-size: 0.68rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.3px;
+}
+
+/* ===== Custom hamburger toggler ===== */
+.navbar-toggler {
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    background: rgba(255, 255, 255, 0.12);
+    border-radius: 0.65rem;
+    transition: background 0.3s ease;
+    flex-shrink: 0;
+}
+
+.navbar-toggler:hover {
+    background: rgba(255, 255, 255, 0.22);
+}
+
+.toggler-bar {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: #fff;
+    border-radius: 2px;
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
+}
+
+.toggler-bar.open:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.toggler-bar.open:nth-child(2) {
+    opacity: 0;
+}
+
+.toggler-bar.open:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ===== Collapsible nav (mobile/tablet) — slow, smooth transition ===== */
+.nav-collapse-wrapper {
+    width: 100%;
+    overflow: hidden;
+    max-height: 0;
+    opacity: 0;
+    transition:
+        max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+        opacity 0.45s ease,
+        margin-top 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-collapse-wrapper.open {
+    max-height: 220px;
+    opacity: 1;
+    margin-top: 0.85rem;
+}
+
+/* ===== Signup buttons ===== */
+.signup-btn {
+    border-radius: 2rem;
+    padding: 0.5rem 1.3rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    transition: all 0.2s ease-in-out;
+    border: 1.5px solid transparent;
+}
+
+.owner-btn {
+    background: #fff;
+    color: #3a0ca3;
+}
+
+.owner-btn:hover {
+    background: rgba(255, 255, 255, 0.92);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.tenant-btn {
+    background: transparent;
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.6);
+}
+
+.tenant-btn:hover {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #fff;
+    transform: translateY(-1px);
+}
+
+.signup-btn:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* 📱 Mobile / Android phones */
+@media (max-width: 575.98px) {
+    .custom-navbar {
+        max-width: 94%;
+        margin: 0.6rem auto 0;
+        border-radius: 1rem;
+        padding: 0.55rem 0.8rem;
+    }
+
+    .brand-name {
+        font-size: 0.95rem;
+    }
+
+    .brand-logo {
+        width: 34px;
+        height: 34px;
+    }
+
+    .signup-btn {
+        font-size: 0.85rem;
+        padding: 0.5rem 1rem;
+    }
+}
+
+/* 📲 Tablets */
+@media (min-width: 576px) and (max-width: 991.98px) {
+    .custom-navbar {
+        max-width: 95%;
+        border-radius: 1.15rem;
+    }
+}
+
+/* 🖥️ Desktop — nav always inline, no collapse animation needed */
+@media (min-width: 992px) {
+    .custom-navbar {
+        max-width: 92%;
+        border-radius: 1.5rem;
+        padding: 0.7rem 1.5rem;
+    }
+
+    .container-fluid {
+        flex-wrap: nowrap;
+    }
+
+    .nav-top-row {
+        width: auto;
+        justify-content: flex-start;
+    }
+
+    .navbar-toggler {
+        display: none;
+    }
+
+    .nav-collapse-wrapper {
+        width: auto;
+        max-height: none !important;
+        opacity: 1 !important;
+        overflow: visible;
+        margin-top: 0 !important;
+        transition: none;
+        margin-left: auto;
+        transition: none;
+    }
+
+    .nav-collapse-wrapper .navbar-nav {
+        justify-content: flex-end;
+    }
+
+    .signup-btn {
+        padding: 0.5rem 1.2rem;
     }
 }

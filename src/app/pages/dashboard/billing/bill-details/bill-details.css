@@ -1,0 +1,51 @@
+.page {
+  width: 100%;
+  padding: 1.5%;
+}
+
+.bill-summary-card {
+  border-radius: 1rem;
+}
+
+.status-badge {
+  color: #fff;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+}
+
+.detail-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #6c757d;
+  margin-bottom: 0.2rem;
+}
+
+.detail-value {
+  font-weight: 700;
+  color: #212529;
+}
+
+.total-value {
+  color: #3a0ca3;
+  font-size: 1.2rem;
+}
+
+.payments-section h5 {
+  color: #3a0ca3;
+}
+
+.payment-card {
+  border-radius: 0.85rem;
+  border-left: 3px solid #4361ee !important;
+}
+
+@media (max-width: 575.98px) {
+  .page {
+    padding: 0.8rem;
+  }
+
+  .bill-summary-card .card-body {
+    padding: 1.25rem !important;
+  }
+}

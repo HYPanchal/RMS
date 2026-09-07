@@ -9,86 +9,97 @@ import { getAllBills, getAllProperties, getTenantById } from '../../../core/test
 import { Tenant } from '../../../core/models/tenant-module/tenant.model';
 import { Tenants } from '../tenants/tenants';
 import { BillingResponse } from '../../../core/models/billing-module/billing-DTO.model';
+import { BillingPending } from './billing-pending/billing-pending';
+import { GenerateBill } from './generate-bill/generate-bill';
+import { BillingGenerated } from './billing-generated/billing-generated';
+
+type BillingTab = 'pending' | 'generated';
 
 @Component({
   selector: 'billing',
   standalone: true,
-  imports: [FormsModule],
+  imports: [BillingPending, BillingGenerated],
   templateUrl: './billing.html',
   styleUrl: './billing.css',
 })
 export class Billing {
-  private billingService = inject(BillingService);
-  private propertyService = inject(PropertyService);
+  // private billingService = inject(BillingService);
+  // private propertyService = inject(PropertyService);
 
-  bills = signal<BillingResponse[] | undefined>([]);
-  properties = signal<Property[] | undefined>([]);
-  isLoading = signal(true);
+  // bills = signal<BillingResponse[] | undefined>([]);
+  // properties = signal<Property[] | undefined>([]);
+  // isLoading = signal(true);
 
-  selectedPropertyId = signal<number | null>(null);
-  selectedMonth = signal<string>('');
+  // selectedPropertyId = signal<number | null>(null);
+  // selectedMonth = signal<string>('');
 
-  filteredBills = computed(() => {
-    const propId = this.selectedPropertyId();
-    const month = this.selectedMonth();
+  // // filteredBills = computed(() => {
+  // //   const propId = this.selectedPropertyId();
+  // //   const month = this.selectedMonth();
 
-    // return this.bills().filter((b) => {
-    //   const matchesProperty = !propId || b.tenant.propert?.id === propId;
-    //   const matchesMonth = !month || b.billingMonth === month;
-    //   return matchesProperty && matchesMonth;
-    // });
+  // //   // return this.bills().filter((b) => {
+  // //   //   const matchesProperty = !propId || b.tenant.propert?.id === propId;
+  // //   //   const matchesMonth = !month || b.billingMonth === month;
+  // //   //   return matchesProperty && matchesMonth;
+  // //   // });
 
-    return (this.bills() ?? []).filter((b) => {
+  // //   return (this.bills() ?? []).filter((b) => {
 
-      const tenant = getTenantById(b.tenantId);
+  // //     // const tenant = getTenantById(b.tenantId);
 
-      const matchesProperty =
-        !propId || tenant?.property === propId;
+  // //     const matchesProperty =
+  // //       !propId || tenant?.property === propId;
 
-      const matchesMonth =
-        !month || b.billingMonth === month;
+  // //     const matchesMonth =
+  // //       !month || b.billingMonth === month;
 
-      return matchesProperty && matchesMonth;
-    });
-  });
+  // //     return matchesProperty && matchesMonth;
+  // //   });
+  // // });
 
-  totalAmount = computed(() =>
-    this.filteredBills().reduce((sum, b) => sum + b.totalAmount, 0)
-  );
+  // // totalAmount = computed(() =>
+  // //   this.filteredBills().reduce((sum, b) => sum + b.totalAmount, 0)
+  // // );
 
-  ngOnInit(): void {
-    // this.propertyService.getAll().subscribe({ next: (data) => this.properties.set(data) });
-    this.properties.set(getAllProperties());
-    this.loadBills();
-  }
+  // ngOnInit(): void {
+  //   // this.propertyService.getAll().subscribe({ next: (data) => this.properties.set(data) });
+  //   this.properties.set(getAllProperties());
+  //   this.loadBills();
+  // }
 
-  getTenantName(id: number): string | null{
-    return getTenantById(id)?.fullName ?? null;
-  }
+  // getTenantName(id: number): string | null{
+  //   return getTenantById(id)?.fullName ?? null;
+  // }
 
-  loadBills(): void {
-    this.isLoading.set(true);
-    // this.billingService.getAll().subscribe({
-    //   next: (data) => { this.bills.set(data); this.isLoading.set(false); },
-    //   error: () => this.isLoading.set(false)
-    // });
-    this.bills.set(getAllBills());
-    this.isLoading.set(false);
-  }
+  // loadBills(): void {
+  //   this.isLoading.set(true);
+  //   // this.billingService.getAll().subscribe({
+  //   //   next: (data) => { this.bills.set(data); this.isLoading.set(false); },
+  //   //   error: () => this.isLoading.set(false)
+  //   // });
+  //   this.bills.set(getAllBills());
+  //   this.isLoading.set(false);
+  // }
 
-  onPropertyFilterChange(value: number | null): void {
-    this.selectedPropertyId.set(value);
-  }
+  // onPropertyFilterChange(value: number | null): void {
+  //   this.selectedPropertyId.set(value);
+  // }
 
-  onMonthFilterChange(value: string): void {
-    this.selectedMonth.set(value);
-  }
+  // onMonthFilterChange(value: string): void {
+  //   this.selectedMonth.set(value);
+  // }
 
-  statusClass(status: string): string {
-    switch (status) {
-      case 'PAID': return 'bg-success';
-      case 'PENDING': return 'bg-warning text-dark';
-      default: return 'bg-danger';
-    }
+  // statusClass(status: string): string {
+  //   switch (status) {
+  //     case 'PAID': return 'bg-success';
+  //     case 'PENDING': return 'bg-warning text-dark';
+  //     default: return 'bg-danger';
+  //   }
+  // }
+
+  activeTab = signal<BillingTab>('pending');
+
+  setTab(tab: BillingTab): void {
+    this.activeTab.set(tab);
   }
 }

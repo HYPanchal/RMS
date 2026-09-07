@@ -1,65 +1,21 @@
 <div class="page">
-    <div class="page-header mb-4">
-  <h3 class="fw-bold mb-1">Billing</h3>
-  <p class="text-muted mb-0 small">Generated bills across all properties</p>
-</div>
-
-<div class="filter-bar row g-2 mb-3">
-  <div class="col-12 col-md-4">
-    <select class="form-select" [ngModel]="selectedPropertyId()" (ngModelChange)="onPropertyFilterChange($event)">
-      <option [ngValue]="null">All Properties</option>
-      @for (property of properties(); track property.id) {
-        <option [ngValue]="property.id">{{ property.propertyName }}</option>
-      }
-    </select>
-  </div>
-  <div class="col-12 col-md-4">
-    <input type="month" class="form-control" [ngModel]="selectedMonth()" (ngModelChange)="onMonthFilterChange($event)" />
-  </div>
-  <div class="col-12 col-md-4 d-flex align-items-center">
-    <span class="total-badge">Total: ₹{{ totalAmount() }}</span>
-  </div>
-</div>
-
-@if (isLoading()) {
-  <div class="text-center py-5"><div class="spinner-border text-primary"></div></div>
-} @else if (filteredBills().length === 0) {
-  <div class="text-center text-muted py-5">No bills found for the selected filters.</div>
-} @else {
-  <div class="table-responsive billing-table-wrapper d-none d-md-block">
-    <table class="table align-middle">
-      <thead>
-        <tr><th>Tenant</th><th>Month</th><th>Amount</th><th>Status</th></tr>
-        <!-- <th>Property</th> -->
-      </thead>
-      <tbody>
-        @for (bill of filteredBills(); track bill.id) {
-          <tr>
-            <td class="fw-semibold">{{ getTenantName(bill.tenantId) }}</td>
-            <!-- <td>{{ bill.propertyName }}</td> -->
-            <td>{{ bill.billingMonth }}</td>
-            <td>₹{{ bill.totalAmount }}</td>
-            <td><span class="badge" [class]="statusClass(bill.paymentStatus)">{{ bill.paymentStatus }}</span></td>
-          </tr>
-        }
-      </tbody>
-    </table>
+  <div class="page-header mb-4 animation">
+    <h3 class="fw-bold mb-1">Billing</h3>
+    <p class="text-muted mb-0 small">Generate and track rent bills across your properties</p>
   </div>
 
-  <div class="d-md-none">
-    @for (bill of filteredBills(); track bill.id) {
-      <div class="card bill-card mb-2 border-0 shadow-sm">
-        <div class="card-body">
-          <div class="d-flex justify-content-between align-items-start">
-            <h6 class="fw-semibold mb-1">{{ getTenantName(bill.tenantId) }}</h6>
-            <span class="badge" [class]="statusClass(bill.paymentStatus)">{{ bill.paymentStatus }}</span>
-          </div>
-          <p class="text-muted small mb-1">{{ bill.billingMonth }}</p>
-          <!-- {{ bill.propertyName }} ·  -->
-          <p class="fw-semibold mb-0">₹{{ bill.totalAmount }}</p>
-        </div>
-      </div>
-    }
+  <div class="billing-tabs mb-4 animation" style="animation-delay: 100ms;">
+    <button class="tab-btn" [class.active]="activeTab() === 'pending'" (click)="setTab('pending')">
+      Pending
+    </button>
+    <button class="tab-btn" [class.active]="activeTab() === 'generated'" (click)="setTab('generated')">
+      Generated
+    </button>
   </div>
-}
+
+  @if (activeTab() === 'pending') {
+    <app-billing-pending />
+  } @else {
+    <app-billing-generated />
+  }
 </div>

@@ -1,10 +1,9 @@
 <div class="page">
-    <div class="page-header mb-4">
+    <div class="page-header mb-4 animation">
         <h3 class="fw-bold mb-1">{{propertyName}}</h3>
         <p class="text-muted mb-0 small">All rooms across your properties</p>
     </div>
-    <div class="header">
-
+    <div class="header animation" style="animation-delay: 0.2s;">
         <div class="mb-4">
             <button class="btn btn-sm btn-outline-primary" (click)="goBack()">← Back to Properties</button>
         </div>
@@ -24,8 +23,10 @@
     } @else {
     <div class="row g-3 g-md-4">
         @for (room of rooms(); track room.id) {
-        <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
-            <div class="card room-card h-100 border-0 shadow-sm" (click)="openRoom(room.id)" role="button" tabindex="0">
+        <div class="col-12 col-sm-6 col-lg-4 col-xl-3 animation">
+            <div class="card room-card h-100 border-0 shadow-sm animation"
+            [style.animation-delay.ms]="staggerDelay(room.id)" 
+            (click)="openRoom(room.id)" role="button" tabindex="0">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-start mb-2">
                         <h5 class="card-title fw-semibold mb-0">Room {{ room.roomNumber }}</h5>

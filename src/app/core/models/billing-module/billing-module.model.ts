@@ -1,10 +1,10 @@
 export interface BillingModel{
     id: number;
-    tenantId: number;
     roomId: number;
     billingMonth: string;
     billingYear: string;
     rentAmount: number;
+    electricityUnit: string;
     electricity: string;
     water: string;
     maintenance: string | null;
@@ -12,10 +12,11 @@ export interface BillingModel{
     otherChargesDescription: string | null;
     totalAmount: number;
     paymentStatus: string;
-    amountPaid: string | null;
     paymentDueDate: string;
     paymentDate: string | null;
     note: string | null;
     entryDate: string;
     updatedDate: string;
 }
+
+export type PaymentStatus = 'PAID' | 'PARTIAL' | 'PENDING';

@@ -8,6 +8,7 @@ export interface RegirsterRoomRequest {
     roomStatus: RoomStatus;
     baseRent: number;
     lightPerUnit: number;
+    lastMeterReading: number;
     waterCharges: number;
     securityDeposit: number;
     maxOccupancy: number;
@@ -28,6 +29,7 @@ export interface RoomUpdateRequest {
     roomStatus: RoomStatus;
     baseRent: number;
     lightPerUnit: number;
+    lastMeterReading: number;
     waterCharges: number;
     securityDeposit: number;
     maxOccupancy: number;
@@ -44,6 +46,7 @@ export interface RoomResponse {
     roomStatus: RoomStatus;
     baseRent: number;
     lightPerUnit: number;
+    lastMeterReading: number;
     waterCharges: number;
     securityDeposit: number;
     maxOccupancy: number;

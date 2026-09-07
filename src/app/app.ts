@@ -1,7 +1,9 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, signal, inject } from '@angular/core';
+import { Router, RouterOutlet, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 import { Login } from './pages/login/login';
 import { Header } from './pages/header/header';
+import { SnackBar } from './pages/snack-bar/snack-bar';
 import { Dashboard } from "./pages/dashboard/dashboard";
 import { Properties } from "./pages/dashboard/properties/properties";
 import { Tenants } from "./pages/dashboard/tenants/tenants";
@@ -13,10 +15,20 @@ import { AddRoom } from './pages/dashboard/room/add-room/add-room';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Login, Header, Dashboard, Properties, Tenants, Billing, Revenue, UserSignup, RoomDetails, AddRoom],
+  standalone: true,
+  imports: [RouterOutlet, Login, Header, Dashboard, Properties, Tenants, Billing, Revenue, UserSignup, RoomDetails, AddRoom, SnackBar],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('RentalManagementSystem'); 
+  private router = inject(Router);
+
+  showHeader = signal(!this.router.url.startsWith('/dashboard'));
+
+  constructor() {
+    this.router.events.pipe(filter((e) => e instanceof NavigationEnd)).subscribe(() => {
+      this.showHeader.set(!this.router.url.startsWith('/dashboard'));
+    });
+  }
 }

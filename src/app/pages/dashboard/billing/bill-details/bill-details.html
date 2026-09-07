@@ -1,0 +1,94 @@
+<div class="page">
+  <div class="mb-4">
+    <button class="btn btn-sm btn-outline-primary animation" style="margin-bottom: 1.5rem;"
+      (click)="goBack()">← Back to Billing</button>
+  </div>
+
+  @if (isLoading()) {
+  <div class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+  } @else if (errorMessage()) {
+  <div class="alert alert-danger">{{ errorMessage() }}</div>
+  } @else if (bill(); as b) {
+  <div class="card bill-summary-card border-0 shadow-sm mb-4 animation" style="animation-delay: 0.3s;">
+    <div class="card-body p-4">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-4">
+        <div>
+          <h3 class="fw-bold mb-1">Room {{ room()?.roomNumber }}</h3>
+          <p class="text-muted mb-0">{{ b.billingMonth }} {{ b.billingYear }}</p>
+        </div>
+        <span class="badge status-badge" [class]="statusClass(b.paymentStatus)">{{ b.paymentStatus }}</span>
+      </div>
+
+      <div class="row g-3">
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Rent</p>
+          <p class="detail-value">₹{{ b.rentAmount }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Electricity</p>
+          <p class="detail-value">₹{{ b.electricity }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Water</p>
+          <p class="detail-value">₹{{ b.water }}</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Unit</p>
+          <p class="detail-value">{{ b.electricityUnit }} Units</p>
+        </div>
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Maintenance</p>
+          <p class="detail-value">₹{{ b.maintenance ?? 0 }}</p>
+        </div>
+        @if (b.otherCharges) {
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Other Charges</p>
+          <p class="detail-value">₹{{ b.otherCharges }}</p>
+          <p class="text-muted small mb-0">{{ b.otherChargesDescription }}</p>
+        </div>
+        }
+        <div class="col-6 col-md-3">
+          <p class="detail-label">Due Date</p>
+          <p class="detail-value">{{ b.paymentDueDate }}</p>
+        </div>
+        <div class="col-12 col-md-3">
+          <p class="detail-label">Total Amount</p>
+          <p class="detail-value total-value">₹{{ b.totalAmount }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="payments-section animation" style="animation-delay: 0.5s;">
+    <h5 class="fw-semibold mb-3">Tenant Payments ({{ payments().length }})</h5>
+
+    <div class="row g-3">
+      @for (payment of payments(); track payment.id) {
+      <div class="col-12 col-md-6">
+        <div class="card payment-card border-0 shadow-sm h-100">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h6 class="fw-semibold mb-0">{{ tenantName(payment.tenantId) }}</h6>
+              <span class="badge" [class]="statusClass(payment.paymentStatus)">{{ payment.paymentStatus }}</span>
+            </div>
+            <p class="text-muted small mb-2">Share: ₹{{ payment.shareAmount }}</p>
+            <p class="small mb-3">
+              Paid: ₹{{ payment.amountPaid }}
+              @if (payment.paymentDate) { · {{ payment.paymentDate }} }
+            </p>
+
+            @if (payment.paymentStatus !== 'PAID') {
+            <button class="btn btn-sm btn-outline-success w-100" (click)="markAsPaid(payment)">
+              Mark as Paid
+            </button>
+            }
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+  }
+</div>

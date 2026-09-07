@@ -1,3 +1,8 @@
+.page {
+  width: 100%;
+  padding: 2%;
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -34,10 +39,14 @@
 }
 
 @media (max-width: 575.98px) {
-  .page {
+  /* .page {
     padding-top: 2%;
     margin-left: 0.7rem;
     margin-right: 0.7rem;
+  } */
+
+  .page {
+    padding: 1rem;
   }
 
   /* .room-card {

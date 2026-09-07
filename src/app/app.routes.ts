@@ -12,13 +12,17 @@ import { AddRoom } from './pages/dashboard/room/add-room/add-room';
 import { AddTenant } from './pages/dashboard/tenants/add-tenant/add-tenant';
 import { TenantService } from './core/services/tenant.service';
 import { TenantDetails } from './pages/dashboard/tenants/tenant-details/tenant-details';
+import { Overview } from './pages/dashboard/overview/overview';
+import { GenerateBill } from './pages/dashboard/billing/generate-bill/generate-bill';
+import { BillDetails } from './pages/dashboard/billing/bill-details/bill-details';
 
 export const routes: Routes = [
-    // {path: 'login', component: Login},
+    {path: 'login', component: Login},
     {
         path: 'dashboard', 
         component: Dashboard, 
         children:[
+            {path: 'overview', component: Overview},
             {path: 'properties', component: Properties},
             {path: 'properties/add-property', component: AddProperty},
             {path: 'rooms/:propertyId/:propertyName/add-room', component: AddRoom},
@@ -29,8 +33,10 @@ export const routes: Routes = [
             {path: 'tenants/add', component: AddTenant},
             {path: 'tenants/:id', component: TenantDetails},
             {path: 'billing', component: Billing},
+            {path: 'billing/generate/:roomId', component: GenerateBill},
+            {path: 'billing/details/:billId', component: BillDetails},
             {path: 'revenue', component: Revenue}
         ]
     },
-    // {path: '', redirectTo: 'login', pathMatch: 'full'}   
+    {path: '', redirectTo: 'login', pathMatch: 'full'}   
 ];

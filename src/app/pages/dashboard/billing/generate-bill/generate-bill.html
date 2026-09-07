@@ -1,0 +1,75 @@
+<div class="page">
+  <div class="generate-bill-wrapper">
+    <div class="page-header d-flex align-items-center gap-2 mb-4 animation">
+      <div>
+        <h3 class="fw-bold mb-0">Generate Bill</h3>
+        <p class="text-muted small mb-0">Enter this month's electricity reading</p>
+      </div>
+    </div>
+
+    <button class="btn btn-sm btn-outline-primary animation" style="margin-bottom: 1.5rem; animation-delay: 0.2s;" (click)="onCancel()">← Back</button>
+
+    @if (isLoading()) {
+    <div class="text-center py-5">
+      <div class="spinner-border text-primary"></div>
+    </div>
+    } @else if (errorMessage() && !room()) {
+    <div class="alert alert-danger">{{ errorMessage() }}</div>
+    } @else if (room(); as r) {
+    <div class="card form-card border-0 shadow-sm animation" style="animation-delay: 0.5s;">
+      <div class="card-body p-4">
+        <div class="room-context mb-4">
+          <h5 class="fw-semibold mb-1">Room {{ r.roomNumber }}</h5>
+          <p class="text-muted small mb-0">
+            Base Rent -  ₹{{ r.baseRent }} · Water - ₹{{ r.waterCharges }} · ₹{{ r.lightPerUnit }}/unit
+          </p>
+        </div>
+
+        @if (errorMessage()) {
+        <div class="alert alert-danger py-2 small">{{ errorMessage() }}</div>
+        }
+
+        <form [formGroup]="billForm" (ngSubmit)="onSubmit()" novalidate>
+          <div class="row g-3">
+            <div class="col-12 col-md-6">
+              <div class="form-floating">
+                <input type="number" id="electricityUnit" class="form-control" formControlName="electricityUnit"
+                  [class.is-invalid]="billForm.get('electricityUnit')?.invalid && billForm.get('electricityUnit')?.touched"
+                  placeholder="Current Meter Reading" />
+                <label for="electricityUnit">Current Meter Reading</label>
+                @if (billForm.get('electricityUnit')?.invalid && billForm.get('electricityUnit')?.touched) {
+                <div class="invalid-feedback">Enter a valid reading</div>
+                }
+              </div>
+              <p class="text-muted small mt-2 mb-0">Previous reading: {{ r.lastMeterReading ?? 0 }}</p>
+            </div>
+
+            <div class="col-12 col-md-6">
+              <div class="preview-box">
+                <div class="preview-row"><span>Units Consumed</span><span>{{ unitsConsumed() }}</span></div>
+                <div class="preview-row"><span>Electricity Cost</span><span>₹{{ estimatedElectricityCost() }}</span>
+                </div>
+                <div class="preview-row total"><span>Estimated Total</span><span>₹{{ estimatedTotal() }}</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex gap-2 mt-4">
+            <button type="button" class="btn btn-outline-secondary flex-fill flex-md-grow-0 px-4" (click)="onCancel()">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary flex-fill flex-md-grow-0 px-4" [disabled]="isSubmitting()">
+              @if (isSubmitting()) {
+              <span class="spinner-border spinner-border-sm me-2"></span>Generating...
+              } @else {
+              Generate Bill
+              }
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    }
+  </div>
+
+</div>

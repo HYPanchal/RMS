@@ -1,18 +1,12 @@
 .page {
     width: 100%;
-    padding: 0%;
+    padding: 2%;
 }
-
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.property-card {
-    border-radius: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .property-card:hover {
@@ -61,6 +55,10 @@
     .property-card .card-body {
         padding: 1.25rem;
     }
+
+    .page{
+        padding-top: 2rem;
+    }
 }
 
 
@@ -80,14 +78,14 @@
 /* Android */
 @media (max-width: 575.98px) {
     .page {
-        padding-top: 10%;
+        padding-top: 3rem;
     }
 
     .header {
         margin-left: 1rem;
         margin-right: 1rem;
     }
-    
+
     .property-card {
         margin-left: 0.5rem;
         margin-right: 0.5rem;

@@ -1,7 +1,7 @@
-/* .page {
+.page {
   width: 100%;
   padding: 0%;
-} */
+}
 
 .add-tenant-wrapper {
   max-width: 800px;
@@ -21,14 +21,27 @@
 }
 
 @media (max-width: 575.98px) {
-  .form-card .card-body { padding: 1.25rem !important; }
-  .page-header h3 { font-size: 1.2rem; }
+  .page {
+    padding: 1rem;
+  }
+
+  .form-card .card-body {
+    padding: 1.25rem !important;
+  }
+
+  .page-header h3 {
+    font-size: 1.2rem;
+  }
 }
 
 @media (min-width: 576px) and (max-width: 991.98px) {
-  .add-tenant-wrapper { max-width: 100%; }
+  .add-tenant-wrapper {
+    max-width: 100%;
+  }
 }
 
 @media (min-width: 992px) {
-  .add-tenant-wrapper { max-width: 760px; }
+  .add-tenant-wrapper {
+    max-width: 760px;
+  }
 }

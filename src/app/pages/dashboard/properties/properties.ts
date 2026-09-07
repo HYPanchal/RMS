@@ -4,10 +4,13 @@ import { PropertyService } from '../../../core/services/property.service';
 import { Property } from '../../../core/models/property-module/property.model';
 import { PropertyResponse } from '../../../core/models/property-module/property-DTO.model';
 import { getAllProperties } from '../../../core/test-data';
+import { CountUpDirective } from '../../../core/directives/count-up.driective';
+import { OccupancyCountUpDirective } from '../../../core/directives/occupancy-count-up.directive';
 
 @Component({
   selector: 'properties',
   standalone: true,
+  imports: [CountUpDirective, OccupancyCountUpDirective],
   templateUrl: './properties.html',
   styleUrl: './properties.css',
 })
@@ -54,5 +57,10 @@ export class Properties {
 
   openCreateProperty(): void {
     this.router.navigate(['/dashboard/properties/add-property'])
+  }
+
+  staggerDelay(index: number): number {
+    const baseOffset = 200; // ms — lets header + button settle first
+    return baseOffset + Math.min(index, 10) * 50;
   }
 }

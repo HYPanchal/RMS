@@ -1,6 +1,6 @@
 <div class="page">
     <div class="add-tenant-wrapper">
-        <div class="page-header d-flex align-items-center gap-2 mb-4">
+        <div class="page-header d-flex align-items-center gap-2 mb-4 animation">
             <!-- <button class="btn btn-sm btn-outline-secondary" (click)="onCancel()">← Back</button> -->
             <div>
                 <h3 class="fw-bold mb-0">Register Tenant</h3>
@@ -8,9 +8,9 @@
             </div>
         </div>
 
-        <button class="btn btn-sm btn-outline-primary" style="margin-bottom: 1.5rem;" (click)="onCancel()">← Back</button>
+        <button class="btn btn-sm btn-outline-primary animation" style="margin-bottom: 1.5rem; animation-delay: 0.1s;" (click)="onCancel()">← Back</button>
 
-        <div class="card form-card border-0 shadow-sm">
+        <div class="card form-card border-0 shadow-sm animation" style="animation-delay: 0.2s;">
             <div class="card-body p-4">
                 @if (errorMessage()) {
                 <div class="alert alert-danger py-2 small" role="alert">{{ errorMessage() }}</div>

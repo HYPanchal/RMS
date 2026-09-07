@@ -55,6 +55,7 @@ export class AddRoom {
     roomStatus: [RoomStatus.VACANT, [Validators.required]],
     baseRent: [0, [Validators.required, Validators.min(1)]],
     lightPerUnit: [0, [Validators.required, Validators.min(0)]],
+    lastMeterReading: [0, [Validators.required, Validators.min(0)]],
     waterCharges: [0, [Validators.required, Validators.min(0)]],
     securityDeposit: [0, [Validators.required, Validators.min(0)]],
     maxOccupancy: [0, [Validators.required, Validators.min(1)]]
@@ -71,7 +72,7 @@ export class AddRoom {
 
     // const { propertyObj, ...rest } = this.roomForm.getRawValue();
     const payload: RegirsterRoomRequest = this.roomForm.getRawValue();
-    console.log("payload - ", payload.propertyId);
+    // console.log("payload - ", payload.propertyId);
 
     // const payload: RegirsterRoomRequest = {
     //   ...rest,

@@ -1,0 +1,27 @@
+@if (isLoading()) {
+  <div class="text-center py-5"><div class="spinner-border text-primary"></div></div>
+} @else if (rooms().length === 0) {
+  <div class="text-center text-muted py-5 animation" style="animation-delay: 200ms;">All caught up — every occupied room is billed for this month. 🎉</div>
+} @else {
+  <div class="row g-3">
+    @for (room of rooms(); track room.id) {
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card animation pending-card border-0 shadow-sm h-100"
+        [style.animation-delay.ms]="staggerDelay(room.id)">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-start mb-2">
+              <h6 class="fw-semibold mb-0">Room {{ room.roomNumber }}</h6>
+              <span class="badge bg-warning text-dark">Unbilled</span>
+            </div>
+            <p class="text-muted small mb-3">
+              {{ propertyName(room.propertyId) }} · {{ room.tenantIds?.length }} tenant(s)
+            </p>
+            <button class="btn btn-primary btn-sm w-100" (click)="generateBill(room)">
+              Generate Bill
+            </button>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+}
