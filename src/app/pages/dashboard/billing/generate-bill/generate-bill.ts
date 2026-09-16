@@ -31,7 +31,6 @@ export class GenerateBill {
 
   unitsConsumed = computed(() => {
     const room = this.room();
-    // const reading = this.billForm.get('electricityUnit')?.value ?? 0;
     const reading = Number(this.electricityUnit()) || 0;
     return room ? Math.max(reading - (room.lastMeterReading ?? 0), 0) : 0;
   });

@@ -49,8 +49,8 @@ export class AddRoom {
 
   roomForm = this.fb.nonNullable.group({
     propertyId: [Number(this.route.snapshot.paramMap.get('propertyId')), [Validators.required]],
-    roomNumber: ['', [Validators.required]],
-    floorNumber: ['', [Validators.required]],
+    roomNumber: ['', [Validators.required, Validators.pattern(/^[0-9]/)]],
+    floorNumber: ['', [Validators.required, Validators.pattern(/^[0-9]/)]],
     roomType: [RoomType.SINGLE, [Validators.required]],
     roomStatus: [RoomStatus.VACANT, [Validators.required]],
     baseRent: [0, [Validators.required, Validators.min(1)]],

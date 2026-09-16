@@ -25,6 +25,7 @@ export class Sidebar {
   }
 
   logout(): void {
+    this.sidebarService.close();
     this.authService.logout();
   }
 }

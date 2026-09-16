@@ -1,163 +1,296 @@
-<div class="signup-wrapper d-flex align-items-center justify-content-center">
+<div class="signup-wrapper d-flex align-items-center justify-content-center animation">
   <div class="card signup-card shadow-lg border-0">
     <div class="card-body p-4 p-md-5">
-      <div class="text-center mb-4">
-        <h3 class="mb-0 fw-bold">Create Account</h3>
-        <p class="text-muted small">Sign up to get started with RMS</p>
+
+      <!-- Form Header -->
+      <div class="header-row d-flex align-items-center gap-3 mb-4">
+
+        <!-- Back Button -->
+        <button type="button" class="btn btn-sm btn-outline-primary header-enter back-button" (click)="onCancel()">
+          ← Back
+        </button>
+
+        <!-- Header Text -->
+        <div>
+          <h3 class="mb-0 fw-bold">Create Account</h3>
+          <p class="text-muted small mb-0">Sign up to get started with RTMS</p>
+        </div>
       </div>
 
+      <!-- Error Message -->
       @if (errorMessage()) {
-        <div class="alert alert-danger py-2 small" role="alert">
-          {{ errorMessage() }}
-        </div>
+      <div class="alert alert-danger py-2 small" role="alert">
+        {{ errorMessage() }}
+      </div>
       }
 
+      <!-- Form -->
       <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" novalidate>
         <div class="row g-3">
+
+          <!-- Full name input box -->
           <div class="col-12 col-md-6">
             <div class="form-floating">
               <input type="text" id="fullName" class="form-control"
                 [class.is-invalid]="signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched"
                 formControlName="fullName" placeholder="Full Name" />
               <label for="fullName">Full Name</label>
+
+              <!-- Full name error message -->
               @if (signupForm.get('fullName')?.invalid && signupForm.get('fullName')?.touched) {
-                <div class="invalid-feedback">Full name must be at least 3 characters</div>
+
+              @if (signupForm.get('fullName')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Full name is required
+              </div>
+              }
+
+              @else if (signupForm.get('fullName')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Full name must be at least 3 characters
+              </div>
+              }
               }
             </div>
           </div>
 
+          <!-- User name input box -->
           <div class="col-12 col-md-6">
             <div class="form-floating">
               <input type="text" id="username" class="form-control"
                 [class.is-invalid]="signupForm.get('username')?.invalid && signupForm.get('username')?.touched"
                 formControlName="username" placeholder="Username" autocomplete="username" />
               <label for="username">Username</label>
-              @if (signupForm.get('username')?.invalid && signupForm.get('username')?.touched) {
-                <div class="invalid-feedback">Username must be at least 4 characters</div>
+
+              <!-- User name error message -->
+              @if(signupForm.get('username')?.invalid && signupForm.get('username')?.touched) {
+
+              @if (signupForm.get('username')?.hasError('required')) {
+              <div class="invalid-feedback">
+                User name is required
+              </div>
+              }
+
+              @else if (signupForm.get('username')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Username must be at least 4 characters
+              </div>
+              }
               }
             </div>
           </div>
 
+          <!-- Email input box -->
           <div class="col-12 col-md-6">
             <div class="form-floating">
               <input type="email" id="email" class="form-control"
                 [class.is-invalid]="signupForm.get('email')?.invalid && signupForm.get('email')?.touched"
                 formControlName="email" placeholder="Email" autocomplete="email" />
               <label for="email">Email</label>
-              @if (signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
-                <div class="invalid-feedback">Enter a valid email</div>
+
+              <!-- Email error message -->
+              @if(signupForm.get('email')?.invalid && signupForm.get('email')?.touched) {
+
+              @if (signupForm.get('email')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Email is required
+              </div>
+              }
+
+              @else if (signupForm.get('email')?.hasError('email')) {
+              <div class="invalid-feedback">
+                Enter valid Email id
+              </div>
+              }
               }
             </div>
           </div>
 
+          <!-- Phone Number input box -->
           <div class="col-12 col-md-6">
             <div class="form-floating">
               <input type="tel" id="phoneNumber" class="form-control"
                 [class.is-invalid]="signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched"
                 formControlName="phoneNumber" placeholder="Phone Number" />
               <label for="phoneNumber">Phone Number</label>
-              @if (signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched) {
-                <div class="invalid-feedback">Enter a valid 10-digit phone number</div>
+
+              <!-- Phone number error message -->
+              @if(signupForm.get('phoneNumber')?.invalid && signupForm.get('phoneNumber')?.touched) {
+
+              @if (signupForm.get('phoneNumber')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Phone Nummber is required
+              </div>
+              }
+
+              @else if (signupForm.get('phoneNumber')?.hasError('pattern')) {
+              <div class="invalid-feedback">
+                Phone number must contain exactly 10 digits
+              </div>
+              }
               }
             </div>
           </div>
 
-          <div class="col-12">
-            <label class="form-label small fw-semibold mb-2">I am signing up as</label>
-            <div class="d-flex gap-3 flex-wrap">
-              @for (role of roles; track role) {
-                <div class="form-check role-check">
-                  <input class="form-check-input" type="radio" [id]="role" [value]="role" formControlName="userRole" />
-                  <label class="form-check-label" [for]="role">{{ role | titlecase }}</label>
-                </div>
-              }
-            </div>
-          </div>
-
+          <!-- Address Input box -->
           <div class="col-12">
             <div class="form-floating">
               <input type="text" id="address" class="form-control"
                 [class.is-invalid]="signupForm.get('address')?.invalid && signupForm.get('address')?.touched"
                 formControlName="address" placeholder="Address" />
               <label for="address">Address</label>
-              @if (signupForm.get('address')?.invalid && signupForm.get('address')?.touched) {
-                <div class="invalid-feedback">Address is required</div>
+
+              <!-- Address error message -->
+              @if(signupForm.get('address')?.invalid && signupForm.get('address')?.touched) {
+
+              @if (signupForm.get('address')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Address is required
+              </div>
+              }
               }
             </div>
           </div>
 
+          <!-- State -->
           <div class="col-12 col-md-4">
             <div class="form-floating">
-              <input type="text" id="city" class="form-control"
+              <select id="stateCode" class="form-select" formControlName="stateCode" (change)="onStateChange($event)"
+                [class.is-invalid]="signupForm.get('stateCode')?.invalid && signupForm.get('state')?.touched">
+                <option value="" disabled selected>Select State</option>
+                @for (s of states(); track s.isoCode) {
+                <option [value]="s.isoCode">{{ s.name }}</option>
+                }
+              </select>
+              <label for="stateCode">State</label>
+
+              <!-- State Error message -->
+              @if (signupForm.get('stateCode')?.invalid && signupForm.get('stateCode')?.touched) {
+              <div class="invalid-feedback">Please select a state</div>
+              }
+            </div>
+          </div>
+
+          <!-- City -->
+          <div class="col-12 col-md-4">
+            <div class="form-floating">
+              <select id="city" class="form-select" formControlName="city"
                 [class.is-invalid]="signupForm.get('city')?.invalid && signupForm.get('city')?.touched"
-                formControlName="city" placeholder="City" />
+                [disabled]="!selectedStateCode()">
+                <option value="" disabled selected>
+                  {{ selectedStateCode() ? 'Select City' : 'Select state first' }}
+                </option>
+                @for (c of cities(); track c.name) {
+                <option [value]="c.name">{{ c.name }}</option>
+                }
+              </select>
               <label for="city">City</label>
+
+              <!-- City Error message -->
               @if (signupForm.get('city')?.invalid && signupForm.get('city')?.touched) {
-                <div class="invalid-feedback">City is required</div>
+              <div class="invalid-feedback">City is required</div>
               }
             </div>
           </div>
 
-          <div class="col-12 col-md-4">
-            <div class="form-floating">
-              <input type="text" id="state" class="form-control"
-                [class.is-invalid]="signupForm.get('state')?.invalid && signupForm.get('state')?.touched"
-                formControlName="state" placeholder="State" />
-              <label for="state">State</label>
-              @if (signupForm.get('state')?.invalid && signupForm.get('state')?.touched) {
-                <div class="invalid-feedback">State is required</div>
-              }
-            </div>
-          </div>
-
+          <!-- Pincode input box -->
           <div class="col-12 col-md-4">
             <div class="form-floating">
               <input type="text" id="pincode" class="form-control"
                 [class.is-invalid]="signupForm.get('pincode')?.invalid && signupForm.get('pincode')?.touched"
                 formControlName="pincode" placeholder="Pincode" />
               <label for="pincode">Pincode</label>
-              @if (signupForm.get('pincode')?.invalid && signupForm.get('pincode')?.touched) {
-                <div class="invalid-feedback">Enter a valid 6-digit pincode</div>
+
+              <!-- Pincode Error message -->
+              @if(signupForm.get('pincode')?.invalid && signupForm.get('pincode')?.touched) {
+
+              @if (signupForm.get('pincode')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Pincode is required
+              </div>
+              }
+
+              @else if (signupForm.get('pincode')?.hasError('pattern')) {
+              <div class="invalid-feedback">
+                Enter a valid 6-digit pincode
+              </div>
+              }
               }
             </div>
           </div>
 
+          <!-- Password Input box -->
           <div class="col-12 col-md-6">
             <div class="form-floating position-relative">
               <input [type]="showPassword() ? 'text' : 'password'" id="password" class="form-control"
-                [class.is-invalid]="signupForm.get('password')?.invalid && signupForm.get('password')?.touched"
-                formControlName="password" placeholder="Password" autocomplete="new-password" />
-              <label for="password">Password</label>
-              <button type="button" class="btn btn-sm btn-link password-toggle" (click)="togglePassword()" tabindex="-1">
+                [class.is-invalid]="signupForm.get('passwordHash')?.invalid && signupForm.get('passwordHash')?.touched"
+                formControlName="passwordHash" placeholder="Password" autocomplete="new-password" />
+              <label for="passwordHashs">Password</label>
+              <button type="button" class="btn btn-sm btn-link password-toggle" (click)="togglePassword()"
+                tabindex="-1">
                 {{ showPassword() ? 'Hide' : 'Show' }}
               </button>
-              @if (signupForm.get('password')?.invalid && signupForm.get('password')?.touched) {
-                <div class="invalid-feedback">Password must be at least 6 characters</div>
+
+              <!-- Password error message -->
+              @if(signupForm.get('passwordHash')?.invalid && signupForm.get('passwordHash')?.touched) {
+
+              @if (signupForm.get('passwordHash')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Password is required
+              </div>
+              }
+
+              @else if (signupForm.get('passwordHash')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Password must be at least 5 characters
+              </div>
+              }
               }
             </div>
           </div>
 
+          <!-- Confirm Password Inpu box -->
           <div class="col-12 col-md-6">
             <div class="form-floating position-relative">
               <input [type]="showConfirmPassword() ? 'text' : 'password'" id="confirmPassword" class="form-control"
                 [class.is-invalid]="signupForm.get('confirmPassword')?.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched"
                 formControlName="confirmPassword" placeholder="Confirm Password" autocomplete="new-password" />
               <label for="confirmPassword">Confirm Password</label>
-              <button type="button" class="btn btn-sm btn-link password-toggle" (click)="toggleConfirmPassword()" tabindex="-1">
+              <button type="button" class="btn btn-sm btn-link password-toggle" (click)="toggleConfirmPassword()"
+                tabindex="-1">
                 {{ showConfirmPassword() ? 'Hide' : 'Show' }}
               </button>
-              @if (signupForm.get('confirmPassword')?.hasError('passwordMismatch') && signupForm.get('confirmPassword')?.touched) {
-                <div class="invalid-feedback">Passwords do not match</div>
+
+              <!-- Confirm Password error message -->
+              @if(signupForm.get('confirmPassword')?.invalid && signupForm.get('confirmPassword')?.touched) {
+
+              @if (signupForm.get('confirmPassword')?.hasError('required')) {
+              <div class="invalid-feedback">
+                Confirm Password is required
+              </div>
+              }
+
+              @else if (signupForm.get('confirmPassword')?.hasError('minlength')) {
+              <div class="invalid-feedback">
+                Confirm Password must be at least 5 characters
+              </div>
+              }
+              }
+              @if (signupForm.get('confirmPassword')?.hasError('passwordMismatch')) {
+              <div class="invalid-feedback">
+                Passwords do not match
+              </div>
               }
             </div>
           </div>
         </div>
 
+        <!-- Signup button -->
         <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold mt-4" [disabled]="isLoading()">
           @if (isLoading()) {
-            <span class="spinner-border spinner-border-sm me-2"></span>Creating account...
+          <span class="spinner-border spinner-border-sm me-2"></span>Creating account...
           } @else {
-            Sign Up
+          Sign Up
           }
         </button>
 

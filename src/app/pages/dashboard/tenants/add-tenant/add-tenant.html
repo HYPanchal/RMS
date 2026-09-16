@@ -1,14 +1,14 @@
 <div class="page">
     <div class="add-tenant-wrapper">
         <div class="page-header d-flex align-items-center gap-2 mb-4 animation">
-            <!-- <button class="btn btn-sm btn-outline-secondary" (click)="onCancel()">← Back</button> -->
             <div>
                 <h3 class="fw-bold mb-0">Register Tenant</h3>
                 <p class="text-muted small mb-0">Enter tenant details to add them to your records</p>
             </div>
         </div>
 
-        <button class="btn btn-sm btn-outline-primary animation" style="margin-bottom: 1.5rem; animation-delay: 0.1s;" (click)="onCancel()">← Back</button>
+        <button class="btn btn-sm btn-outline-primary animation" style="margin-bottom: 1.5rem; animation-delay: 0.1s;"
+            (click)="onCancel()">← Back</button>
 
         <div class="card form-card border-0 shadow-sm animation" style="animation-delay: 0.2s;">
             <div class="card-body p-4">
@@ -24,8 +24,20 @@
                                     [class.is-invalid]="tenantForm.get('fullName')?.invalid && tenantForm.get('fullName')?.touched"
                                     placeholder="Full Name" />
                                 <label for="fullName">Full Name</label>
+
                                 @if (tenantForm.get('fullName')?.invalid && tenantForm.get('fullName')?.touched) {
-                                <div class="invalid-feedback">Full name must be at least 3 characters</div>
+
+                                @if (tenantForm.get('fullName')?.hasError('required')) {
+                                <div class="invalid-feedback">
+                                    Full name is required
+                                </div>
+                                }
+
+                                @else if (tenantForm.get('fullName')?.hasError('minlength')) {
+                                <div class="invalid-feedback">
+                                    Full name must be at least 4 characters
+                                </div>
+                                }
                                 }
                             </div>
                         </div>
@@ -37,7 +49,7 @@
                                     placeholder="Username" autocomplete="off" />
                                 <label for="userName">Username</label>
                                 @if (tenantForm.get('userName')?.invalid && tenantForm.get('userName')?.touched) {
-                                <div class="invalid-feedback">Username must be at least 4 characters</div>
+                                <div class="invalid-feedback">User name must be at least 4 characters</div>
                                 }
                             </div>
                         </div>
@@ -48,8 +60,20 @@
                                     [class.is-invalid]="tenantForm.get('email')?.invalid && tenantForm.get('email')?.touched"
                                     placeholder="Email" autocomplete="off" />
                                 <label for="email">Email</label>
+
                                 @if (tenantForm.get('email')?.invalid && tenantForm.get('email')?.touched) {
-                                <div class="invalid-feedback">Enter a valid email</div>
+
+                                @if (tenantForm.get('email')?.hasError('required')) {
+                                <div class="invalid-feedback">
+                                    Email is required
+                                </div>
+                                }
+
+                                @else if (tenantForm.get('email')?.hasError('email')) {
+                                <div class="invalid-feedback">
+                                    Enter Valid Email
+                                </div>
+                                }
                                 }
                             </div>
                         </div>
@@ -60,9 +84,19 @@
                                     [class.is-invalid]="tenantForm.get('contactPhone')?.invalid && tenantForm.get('contactPhone')?.touched"
                                     placeholder="Contact Phone" />
                                 <label for="contactPhone">Contact Phone</label>
-                                @if (tenantForm.get('contactPhone')?.invalid && tenantForm.get('contactPhone')?.touched)
-                                {
-                                <div class="invalid-feedback">Enter a valid 10-digit phone number</div>
+                                @if (tenantForm.get('contactPhone')?.invalid && tenantForm.get('contactPhone')?.touched) {
+
+                                @if (tenantForm.get('contactPhone')?.hasError('required')) {
+                                <div class="invalid-feedback">
+                                    Contact number is required
+                                </div>
+                                }
+
+                                @else if (tenantForm.get('contactPhone')?.hasError('pattern')) {
+                                <div class="invalid-feedback">
+                                    Enter 10-digit valid contact number
+                                </div>
+                                }
                                 }
                             </div>
                         </div>
@@ -130,9 +164,20 @@
                                     [class.is-invalid]="tenantForm.get('emergencyPhone')?.invalid && tenantForm.get('emergencyPhone')?.touched"
                                     placeholder="Emergency Phone" />
                                 <label for="emergencyPhone">Emergency Phone</label>
-                                @if (tenantForm.get('emergencyPhone')?.invalid &&
-                                tenantForm.get('emergencyPhone')?.touched) {
-                                <div class="invalid-feedback">Enter a valid 10-digit phone number</div>
+                                
+                                @if (tenantForm.get('emergencyPhone')?.invalid && tenantForm.get('emergencyPhone')?.touched) {
+
+                                @if (tenantForm.get('emergencyPhone')?.hasError('required')) {
+                                <div class="invalid-feedback">
+                                    Contact number is required
+                                </div>
+                                }
+
+                                @else if (tenantForm.get('emergencyPhone')?.hasError('pattern')) {
+                                <div class="invalid-feedback">
+                                    Enter 10-digit valid contact number
+                                </div>
+                                }
                                 }
                             </div>
                         </div>

@@ -23,7 +23,7 @@
         @for (property of properties(); track property.id; let i = $index) {
         <div class="col-12 col-sm-6 col-lg-4 col-xl-3">
             <div class="card property-card animation animation-card h-100 border-0 shadow-sm"
-                [style.animation-delay.ms]="staggerDelay(i)" (click)="openRooms(property.id, property.propertyName)"
+                (click)="openRooms(property.id, property.propertyName)"
                 role="button">
                 <div class="card-body">
                     <h5 class="card-title fw-semibold mb-3">{{ property.propertyName }}</h5>
@@ -44,10 +44,6 @@
                             [countUpDelay]="staggerDelay(i) + 500"></span>
                     </div>
 
-                    <!-- <div class="progress mt-3" style="height: 6px;">
-                        <div class="progress-bar occupancy-bar" [style.width.%]="occupancyPercent(property)"></div>
-                    </div>
-                    <p class="text-muted small mt-2 mb-0">{{ occupancyPercent(property) }}% occupied</p> -->
                     <div class="occupancy-wrap" [occupancyCountUp]="occupancyPercent(property)"
                         [occupancyDelay]="staggerDelay(i) + 550">
                         <div class="progress mt-3" style="height: 6px;">

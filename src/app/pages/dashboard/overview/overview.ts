@@ -58,31 +58,6 @@ export class Overview {
   rentDonutBackground = computed(
     () => `conic-gradient(#2a9d8f 0% ${this.rentPaidPercent()}%, #f4a261 ${this.rentPaidPercent()}% 100%)`
   );
-  // // ===== Line chart geometry =====
-  // private readonly chartWidth = 640;
-  // private readonly chartHeight = 220;
-
-  // maxEarningValue = computed(() => {
-  //   const all = this.earnings().flatMap((e) => [e.expected, e.earned]);
-  //   return all.length ? Math.max(...all) : 1;
-  // });
-
-  // earnedPoints = computed(() => this.buildPoints(this.earnings().map((e) => e.earned)));
-  // expectedPoints = computed(() => this.buildPoints(this.earnings().map((e) => e.expected)));
-
-  // private buildPoints(values: number[]): string {
-  //   if (!values.length) return '';
-  //   const max = this.maxEarningValue();
-  //   const stepX = this.chartWidth / (values.length - 1 || 1);
-
-  //   return values
-  //     .map((v, i) => {
-  //       const x = i * stepX;
-  //       const y = this.chartHeight - (v / max) * (this.chartHeight - 20) - 10;
-  //       return `${x},${y}`;
-  //     })
-  //     .join(' ');
-  // }
 
   // ===== Bar chart geometry =====
    maxEarningValue = computed(() => {

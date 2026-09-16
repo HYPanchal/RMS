@@ -32,12 +32,6 @@ export class Tenants implements OnInit {
     const term = this.searchTerm().toLowerCase().trim();
     const propId = this.selectedPropertyId();
 
-    // return this.tenants().filter((t) => {
-    //   const matchesName = !term || t.tenantName.toLowerCase().includes(term);
-    //   const matchesProperty = !propId || t.property?.id === propId;
-    //   return matchesName && matchesProperty;
-    // });
-
     return (this.tenants() ?? []).filter((t) => {
 
       const matchesName =
@@ -93,13 +87,8 @@ export class Tenants implements OnInit {
     return getRoomByTenantId(id)?.baseRent ?? null; 
   }
 
-  // getPropertyBaserentById(id: number): string | null{
-  //   return getPropertyById(id)?.baseRent ?? null;
-  // }
-
   staggerDelay(index: number): number {
     const baseOffset = 200; // ms — lets header + button settle first
     return baseOffset + Math.min(index, 10) * 50;
-    // return Math.min(index, 10) * 50;
   }
 }

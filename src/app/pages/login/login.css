@@ -1,3 +1,4 @@
+/* login car alignment */
 .login-wrapper {
   min-height: calc(100vh - 100px);
   padding: 1rem;
@@ -6,12 +7,15 @@
   justify-content: center;
 }
 
+
+/* login card size and shape */
 .login-card {
   width: 100%;
   max-width: 420px;
   border-radius: 1rem;
 }
 
+/* Toggle password text into the input box */
 .password-toggle {
   position: absolute;
   right: 0.25rem;
@@ -22,6 +26,7 @@
 
 /* 📱 Mobile / Android phones */
 @media (max-width: 575.98px) {
+  /* Login card size and shape in android */
   .login-card {
     max-width: 100%;
     margin: 0 0.5rem;
@@ -36,6 +41,7 @@
 
 /* 📲 Tablets (portrait & landscape) */
 @media (min-width: 576px) and (max-width: 991.98px) {
+  /* Login card size and shape in Tablet */
   .login-card {
     max-width: 450px;
   }
@@ -43,6 +49,7 @@
 
 /* 🖥️ Desktop / Windows large screens */
 @media (min-width: 992px) {
+  /* Login card size and shape in Desktop */
   .login-card {
     max-width: 420px;
   }

@@ -15,6 +15,7 @@ import { TenantDetails } from './pages/dashboard/tenants/tenant-details/tenant-d
 import { Overview } from './pages/dashboard/overview/overview';
 import { GenerateBill } from './pages/dashboard/billing/generate-bill/generate-bill';
 import { BillDetails } from './pages/dashboard/billing/bill-details/bill-details';
+import { UserSignup } from './pages/user-signup/user-signup';
 
 export const routes: Routes = [
     {path: 'login', component: Login},
@@ -38,5 +39,6 @@ export const routes: Routes = [
             {path: 'revenue', component: Revenue}
         ]
     },
-    {path: '', redirectTo: 'login', pathMatch: 'full'}   
+    {path: '', redirectTo: 'login', pathMatch: 'full'},
+    {path: 'signup', component: UserSignup}  
 ];

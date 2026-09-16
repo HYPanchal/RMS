@@ -14,10 +14,18 @@ import { SnackbarService } from '../../core/services/snackbar.service';
   styleUrl: './login.css',
 })
 export class Login {
+  /*
+  Injected service's
+  1. FormBuilder as fb
+  2. AuthService as authService
+  3. Router as router
+  4. SnackbarService as snackBar
+  */
   private fb = inject(FormBuilder);
   private authService = inject(AuthService);
   private router = inject(Router);
   private snackBar = inject(SnackbarService);
+
 
   isLoading = signal(false);
   errorMessage = signal<string | null>(null);
@@ -28,10 +36,12 @@ export class Login {
     password: ['', [Validators.required, Validators.minLength(4)]]
   });
 
+  //Show and Hide password toggle method
   togglePassword(): void {
     this.showPassword.update((v) => !v);
   }
 
+  //Submit mehtod
   onSubmit(): void {
     if (this.loginForm.invalid) {
       this.loginForm.markAllAsTouched();

@@ -23,11 +23,11 @@ export class AddTenant {
   errorMessage = signal<string | null>(null);
 
   tenantForm = this.fb.nonNullable.group({
-    userName: ['', [Validators.required, Validators.minLength(4)]],
+    userName: ['', [Validators.minLength(4)]],
     fullName: ['', [Validators.required, Validators.minLength(3)]],
     contactPhone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
     email: ['', [Validators.required, Validators.email]],
-    emergencyContact: ['', [Validators.required]],
+    emergencyContact: ['', [Validators.required, Validators.minLength(3)]],
     emergencyPhone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
     idProofType: [IdType.AADHARCARD, [Validators.required]],
     idProofNumber: ['', [Validators.required]],

@@ -53,8 +53,20 @@
                   [class.is-invalid]="roomForm.get('roomNumber')?.invalid && roomForm.get('roomNumber')?.touched"
                   placeholder="Room Number" />
                 <label for="roomNumber">Room Number</label>
+
                 @if (roomForm.get('roomNumber')?.invalid && roomForm.get('roomNumber')?.touched) {
-                <div class="invalid-feedback">Room number is required</div>
+
+                @if (roomForm.get('roomNumber')?.hasError('required')) {
+                <div class="invalid-feedback">
+                  Room number is required
+                </div>
+                }
+
+                @else if (roomForm.get('roomNumber')?.hasError('pattern')) {
+                <div class="invalid-feedback">
+                  Enter Digits only
+                </div>
+                }
                 }
               </div>
             </div>
@@ -65,8 +77,23 @@
                   [class.is-invalid]="roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched"
                   placeholder="Floor Number" />
                 <label for="floorNumber">Floor Number</label>
-                @if (roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched) {
+                <!-- @if (roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched) {
                 <div class="invalid-feedback">Floor number is required</div>
+                } -->
+
+                @if (roomForm.get('floorNumber')?.invalid && roomForm.get('floorNumber')?.touched) {
+
+                @if (roomForm.get('floorNumber')?.hasError('required')) {
+                <div class="invalid-feedback">
+                  Floor number is required
+                </div>
+                }
+
+                @else if (roomForm.get('floorNumber')?.hasError('pattern')) {
+                <div class="invalid-feedback">
+                  Enter Digits only
+                </div>
+                }
                 }
               </div>
             </div>

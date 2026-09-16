@@ -1,5 +1,7 @@
+import { Observable, of } from "rxjs";
+import { RegisterUserRequest } from "../models/User-module/user-DTO.model";
 import { User } from "../models/User-module/user.model";
-import { Roles } from "../models/User-module/user.model"; 
+import { Roles } from "../models/User-module/user.model";
 
 const testUsers: User[] = [
   {
@@ -127,11 +129,39 @@ export function getUserById(id: number): User | undefined {
 export function login(username: string, password: string): boolean {
   const user: User | undefined = testUsers.find(r => r.username === username);
 
-  if(user !== null){
-    if(user?.passwordHash == password){
+  if (user !== null) {
+    if (user?.passwordHash == password) {
       return true;
     }
-    else{return false;}
+    else { return false; }
   }
-  else{return false;}
+  else { return false; }
+}
+
+export function registerUser(body: RegisterUserRequest): Observable<boolean> {
+  const user: User | undefined = testUsers.find(r => r.username === body.username);
+
+  if (user) {
+    return of(false);
+  }
+    const newUser: User = {
+      id: testUsers.length + 1,
+      username: body.username,
+      email: body.email,
+      passwordHash: body.passwordHash,
+      userRole: body.userRole,
+      fullName: body.fullName,
+      phoneNumber: body.phoneNumber,
+      address: body.address,
+      city: body.city,
+      state: body.state,
+      pincode: body.pincode,
+      isActive: true,
+      createdDate: new Date().toISOString(),
+      updatedDate: new Date().toISOString()
+    }
+
+    testUsers.push(newUser);
+
+    return of(true);
 }

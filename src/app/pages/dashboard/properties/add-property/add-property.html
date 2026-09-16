@@ -26,7 +26,7 @@
                   formControlName="propertyName" placeholder="Property Name" />
                 <label for="propertyName">Property Name</label>
                 @if (propertyForm.get('propertyName')?.invalid && propertyForm.get('propertyName')?.touched) {
-                <div class="invalid-feedback">Property name must be at least 5 characters</div>
+                <div class="invalid-feedback">Property name required</div>
                 }
               </div>
             </div>
@@ -41,34 +41,6 @@
                 <label for="propertyType">Property Type</label>
               </div>
             </div>
-
-            <!-- <div class="col-12 col-md-6">
-            <div class="dropdown">
-
-              <button class="btn btn-secondary dropdown-toggle w-100" type="button" data-bs-toggle="dropdown"
-                aria-expanded="false">
-
-                {{ selectedPropertyType
-                ? propertyTypeLabel(selectedPropertyType)
-                : 'Select Property Type' }}
-              </button>
-
-              <ul class="dropdown-menu w-100">
-
-                @for (type of propertyTypes; track type) {
-                <li>
-                  <button type="button" class="dropdown-item" (click)="selectPropertyType(type)">
-
-                    {{ propertyTypeLabel(type) }}
-
-                  </button>
-                </li>
-                }
-
-              </ul>
-
-            </div>
-          </div> -->
 
             <div class="col-12">
               <div class="form-floating">
